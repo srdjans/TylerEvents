@@ -58,12 +58,12 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="#">My Events</a></li>
-                        <li><a runat="server" href="#">All Events</a></li>
+                        <li><a runat="server" href="~\MyEvents">My Events</a></li>
+                        <li><a runat="server" href="~\AllEvents">All Events</a></li>
                         <li><a runat="server" href="~\NewEvent"><span class="glyphicon glyphicon-plus"></span>Create Event</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                        <li><a runat="server" href="~\Settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
                         <li><a href="Account/Login.aspx"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
                     </ul>
                 </div>
