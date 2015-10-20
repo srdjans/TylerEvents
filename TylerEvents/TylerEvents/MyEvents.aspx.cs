@@ -16,7 +16,7 @@ namespace TylerEvents
 
         protected void CurrentMonthEventsDataSource_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
-            //e.Command.Parameters[0].Value = this.User.Identity.Name;  
+            e.Command.Parameters[0].Value = this.User.Identity.Name;  
         }
     }
 }

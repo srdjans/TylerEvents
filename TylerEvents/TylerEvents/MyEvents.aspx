@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="My Events" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyEvents.aspx.cs" Inherits="TylerEvents._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:SqlDataSource ID="CurrentMonthEventsDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT Events.RecId, Events.EventName, Events.Location, Events.OwnerId, Events.Description, Events.MinParticipants, Events.MaxParticipants, Events.StartDateTime, Events.EndDateTime, Participants.UserId, Participants.EventId, AspNetUsers.Id, AspNetUsers.Email, AspNetUsers.EmailConfirmed, AspNetUsers.PasswordHash, AspNetUsers.SecurityStamp, AspNetUsers.PhoneNumber, AspNetUsers.PhoneNumberConfirmed, AspNetUsers.TwoFactorEnabled, AspNetUsers.LockoutEndDateUtc, AspNetUsers.LockoutEnabled, AspNetUsers.AccessFailedCount, AspNetUsers.UserName FROM Events INNER JOIN Participants ON Events.RecId = Participants.EventId INNER JOIN AspNetUsers ON Participants.UserId = AspNetUsers.Id" OnSelecting="CurrentMonthEventsDataSource_Selecting">
+    <asp:SqlDataSource ID="CurrentMonthEventsDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT Events.RecId, Events.EventName, Events.Location, Events.OwnerId, Events.Description, Events.MinParticipants, Events.MaxParticipants, Events.StartDateTime, Events.EndDateTime, Participants.UserId, Participants.EventId, AspNetUsers.Id, AspNetUsers.Email, AspNetUsers.EmailConfirmed, AspNetUsers.PasswordHash, AspNetUsers.SecurityStamp, AspNetUsers.PhoneNumber, AspNetUsers.PhoneNumberConfirmed, AspNetUsers.TwoFactorEnabled, AspNetUsers.LockoutEndDateUtc, AspNetUsers.LockoutEnabled, AspNetUsers.AccessFailedCount, AspNetUsers.UserName FROM Events INNER JOIN Participants ON Events.RecId = Participants.EventId INNER JOIN AspNetUsers ON Participants.UserId = AspNetUsers.Id WHERE (AspNetUsers.UserName = @UserId)" OnSelecting="CurrentMonthEventsDataSource_Selecting">
         <SelectParameters>
             <asp:Parameter Name="UserId" />
         </SelectParameters>
@@ -18,7 +18,16 @@
             </h2>
         </div>
         <div class="col-md-7">
-            <h2>Events this month</h2>
+            <h2>My created events</h2>
+                <div class="table-responsive">
+                    <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="CurrentMonthEventsDataSource" DataKeyNames="RecId,Id">
+                        <Columns>
+                            <asp:BoundField DataField="EventName" HeaderText="EventName" SortExpression="EventName" />
+                            <asp:BoundField DataField="StartDateTime" HeaderText="StartDateTime" SortExpression="StartDateTime" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
+            <h2>My registered events</h2>
                 <div class="table-responsive">
                     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="CurrentMonthEventsDataSource" DataKeyNames="RecId,Id">
                         <Columns>
