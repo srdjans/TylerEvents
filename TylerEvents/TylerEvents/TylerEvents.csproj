@@ -158,6 +158,7 @@
     <Content Include="Content\bootstrap-datetimepicker-standalone.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="MyEvents.aspx" />
     <Content Include="NewEvent.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -218,7 +219,6 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
@@ -345,6 +345,13 @@
     </Compile>
     <Content Include="App_Code\DataAccess.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="MyEvents.aspx.cs">
+      <DependentUpon>MyEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyEvents.aspx.designer.cs">
+      <DependentUpon>MyEvents.aspx</DependentUpon>
+    </Compile>
     <Compile Include="NewEvent.aspx.cs">
       <DependentUpon>NewEvent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -361,13 +368,6 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
