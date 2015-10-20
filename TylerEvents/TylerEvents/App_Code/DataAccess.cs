@@ -170,9 +170,21 @@ namespace TylerEvents
             return this.ExecuteParamerizedSelectCommand(GetEventFromId, CommandType.StoredProcedure, eventIdParams);
         }
 
-        public DataTable retrieveAllEvents()
+        public EventData retrieveAllEvents()
         {
-            return this.ExecuteSelectCommand(GetAllEvents, CommandType.StoredProcedure);
+            DataTable data = this.ExecuteSelectCommand(GetAllEvents, CommandType.StoredProcedure);
+            EventData eventDetails = new EventData();
+
+            eventDetails.EventName = data.Rows[0]["EventName"].ToString();
+            eventDetails.Location = data.Rows[0]["Location"].ToString();
+            eventDetails.StartDateTime = data.Rows[0]["StartDateTime"].ToString();
+            eventDetails.EndDateTime = data.Rows[0]["EndDateTime"].ToString();
+            eventDetails.Description = data.Rows[0]["Description"].ToString();
+            eventDetails.MaxParticipants = Int32.Parse(data.Rows[0]["MaxParticipants"].ToString());
+            eventDetails.MinParticipants = Int32.Parse(data.Rows[0]["MinParticipants"].ToString());
+            eventDetails.OwnerId = data.Rows[0]["OwnerId"].ToString();
+
+            return eventDetails;
         }
     }
 }
