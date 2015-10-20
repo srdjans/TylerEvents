@@ -169,5 +169,10 @@ namespace TylerEvents
 
             return this.ExecuteParamerizedSelectCommand(GetEventFromId, CommandType.StoredProcedure, eventIdParams);
         }
+
+        public DataTable retrieveAllEvents()
+        {
+            return this.ExecuteSelectCommand(GetAllEvents, CommandType.StoredProcedure);
+        }
     }
 }
