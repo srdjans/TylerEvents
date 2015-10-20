@@ -12,8 +12,9 @@ namespace TylerEvents
     {
         private SqlConnection con = null;
         private volatile static DataAccess dataAccessInstance;
-        public const string InsertEvent = "Events_InsertEvent";
-        public const string GetAllEvents = "Events_GetAllEvents";
+        const string InsertEvent = "Events_InsertEvent";
+        const string GetAllEvents = "Events_GetAllEvents";
+        const string GetEventFromId = "Events_GetEventFromId ";
 
         private DataAccess()
         {
@@ -144,12 +145,10 @@ namespace TylerEvents
             string eventDescription,
             int    maxParticipants,
             int    minParticipants,
-            int    ownerId)
+            Int64  ownerId)
         {
 
-            SqlParameter[] valuesToInsert;
-            
-            valuesToInsert = new SqlParameter[8];
+            SqlParameter[] valuesToInsert = new SqlParameter[8];
 
             valuesToInsert[0] = new SqlParameter("@EventName", eventTitle);
             valuesToInsert[1] = new SqlParameter("@Location", eventLocation);
@@ -160,7 +159,15 @@ namespace TylerEvents
             valuesToInsert[6] = new SqlParameter("@MinParticipants", minParticipants);
             valuesToInsert[7] = new SqlParameter("@OwnerId", ownerId);
 
-            this.ExecuteNonQuery(DataAccess.InsertEvent, System.Data.CommandType.StoredProcedure, valuesToInsert);
+            this.ExecuteNonQuery(InsertEvent, CommandType.StoredProcedure, valuesToInsert);
+        }
+
+        public DataTable retrieveEventDetailsFromId(Int64 EventId)
+        {
+            SqlParameter[] eventIdParams = new SqlParameter[1];
+            eventIdParams[0] = new SqlParameter("@EventId", EventId);
+
+            return this.ExecuteParamerizedSelectCommand(GetEventFromId, CommandType.StoredProcedure, eventIdParams);
         }
     }
 }

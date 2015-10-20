@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
     <div class="container">
-        <h3><%: Title %>.</h3>
+        <h3><%: Title %></h3>
         <br />
         <label>Event Title</label>
         <asp:TextBox ID="EventTitle" runat="server" placeholder="Event Title" CssClass="form-control"></asp:TextBox>
