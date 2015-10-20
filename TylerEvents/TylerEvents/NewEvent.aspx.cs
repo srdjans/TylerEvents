@@ -19,7 +19,7 @@ namespace TylerEvents
         {
 
             // XXXMukta: To Remove
-            int tempOwnerId = 1;
+            string tempOwnerId = "a14e1f21-5a2c-4d18-98db-6c1fbb938c70";
             int maxNumParticipants = 0;
             int minNumParticipants = 0;
 

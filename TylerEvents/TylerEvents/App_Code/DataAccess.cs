@@ -145,7 +145,7 @@ namespace TylerEvents
             string eventDescription,
             int    maxParticipants,
             int    minParticipants,
-            Int64  ownerId)
+            string ownerId)
         {
 
             SqlParameter[] valuesToInsert = new SqlParameter[8];
