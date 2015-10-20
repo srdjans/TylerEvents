@@ -12,8 +12,8 @@ namespace TylerEvents
     {
         private SqlConnection con = null;
         private volatile static DataAccess dataAccessInstance;
-        const string InsertEvent = "Events_InsertEvent";
-        const string GetAllEvents = "Events_GetAllEvents";
+        public const string InsertEvent = "Events_InsertEvent";
+        public const string GetAllEvents = "Events_GetAllEvents";
 
         private DataAccess()
         {
@@ -134,6 +134,33 @@ namespace TylerEvents
                 return true;
             }
             return false;
+        }
+
+        public void insertEvent(
+            string eventTitle, 
+            string eventLocation, 
+            string eventStartDateTime, 
+            string eventEndDateTime,
+            string eventDescription,
+            int    maxParticipants,
+            int    minParticipants,
+            int    ownerId)
+        {
+
+            SqlParameter[] valuesToInsert;
+            
+            valuesToInsert = new SqlParameter[8];
+
+            valuesToInsert[0] = new SqlParameter("@EventName", eventTitle);
+            valuesToInsert[1] = new SqlParameter("@Location", eventLocation);
+            valuesToInsert[2] = new SqlParameter("@StartDateTime", eventStartDateTime);
+            valuesToInsert[3] = new SqlParameter("@EndDateTime", eventEndDateTime);
+            valuesToInsert[4] = new SqlParameter("@Description", eventDescription);
+            valuesToInsert[5] = new SqlParameter("@MaxParticipants", maxParticipants);
+            valuesToInsert[6] = new SqlParameter("@MinParticipants", minParticipants);
+            valuesToInsert[7] = new SqlParameter("@OwnerId", ownerId);
+
+            this.ExecuteNonQuery(DataAccess.InsertEvent, System.Data.CommandType.StoredProcedure, valuesToInsert);
         }
     }
 }

@@ -94,24 +94,6 @@ namespace TylerEvents {
         protected global::System.Web.UI.WebControls.TextBox EventDescription;
         
         /// <summary>
-        /// MaxParticipants control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox MaxParticipants;
-        
-        /// <summary>
-        /// MaxParticipantsValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator MaxParticipantsValidator;
-        
-        /// <summary>
         /// MinParticipants control.
         /// </summary>
         /// <remarks>
@@ -128,6 +110,24 @@ namespace TylerEvents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator MinParticipantsValidator;
+        
+        /// <summary>
+        /// MaxParticipants control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MaxParticipants;
+        
+        /// <summary>
+        /// MaxParticipantsValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MaxParticipantsValidator;
         
         /// <summary>
         /// AddEvent control.
