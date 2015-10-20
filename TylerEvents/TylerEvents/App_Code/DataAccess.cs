@@ -162,18 +162,15 @@ namespace TylerEvents
             this.ExecuteNonQuery(InsertEvent, CommandType.StoredProcedure, valuesToInsert);
         }
 
-        public DataTable retrieveEventDetailsFromId(Int64 EventId)
+        public EventData retrieveEventDetailsFromId(Int64 EventId)
         {
             SqlParameter[] eventIdParams = new SqlParameter[1];
+            EventData eventDetails = new EventData();
+            DataTable data;
+
             eventIdParams[0] = new SqlParameter("@EventId", EventId);
 
-            return this.ExecuteParamerizedSelectCommand(GetEventFromId, CommandType.StoredProcedure, eventIdParams);
-        }
-
-        public EventData retrieveAllEvents()
-        {
-            DataTable data = this.ExecuteSelectCommand(GetAllEvents, CommandType.StoredProcedure);
-            EventData eventDetails = new EventData();
+            data = this.ExecuteParamerizedSelectCommand(GetEventFromId, CommandType.StoredProcedure, eventIdParams);
 
             eventDetails.EventName = data.Rows[0]["EventName"].ToString();
             eventDetails.Location = data.Rows[0]["Location"].ToString();
@@ -185,6 +182,11 @@ namespace TylerEvents
             eventDetails.OwnerId = data.Rows[0]["OwnerId"].ToString();
 
             return eventDetails;
+        }
+
+        public DataTable retrieveAllEvents()
+        {
+            return this.ExecuteSelectCommand(GetAllEvents, CommandType.StoredProcedure);
         }
     }
 }
