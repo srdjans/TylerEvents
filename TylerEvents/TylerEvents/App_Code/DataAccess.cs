@@ -18,7 +18,7 @@ namespace TylerEvents
 
         private DataAccess()
         {
-            con = new SqlConnection(ConfigurationManager.ConnectionStrings["TylerEventsDB"].ConnectionString);
+            con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
 
         public static DataAccess Instance()
