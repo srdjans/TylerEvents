@@ -39,7 +39,7 @@ namespace TylerEvents.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["/MyEvents"], Response);
+                        Response.Redirect("/MyEvents");
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");
