@@ -12,10 +12,23 @@ using System.Data;
 public class DataAccess
 {
     private SqlConnection con = null;
+    private volatile static DataAccess dataAccessInstance;
 
-    public DataAccess()
+    private DataAccess()
     {
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["TylerEventsDB"].ConnectionString);
+    }
+
+    public static DataAccess Instance
+    {
+        get
+        {
+            if (dataAccessInstance == null)
+            {
+                dataAccessInstance = new DataAccess();
+            }
+            return dataAccessInstance;
+        }
     }
 
     //Executing select command
