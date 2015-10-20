@@ -6,22 +6,21 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 
-/// <summary>
-/// Summary description for Class1
-/// </summary>
-public class DataAccess
+namespace TylerEvents
 {
-    private SqlConnection con = null;
-    private volatile static DataAccess dataAccessInstance;
-
-    private DataAccess()
+    public class DataAccess
     {
-        con = new SqlConnection(ConfigurationManager.ConnectionStrings["TylerEventsDB"].ConnectionString);
-    }
+        private SqlConnection con = null;
+        private volatile static DataAccess dataAccessInstance;
+        const string InsertEvent = "Events_InsertEvent";
+        const string GetAllEvents = "Events_GetAllEvents";
 
-    public static DataAccess Instance
-    {
-        get
+        private DataAccess()
+        {
+            con = new SqlConnection(ConfigurationManager.ConnectionStrings["TylerEventsDB"].ConnectionString);
+        }
+
+        public static DataAccess Instance()
         {
             if (dataAccessInstance == null)
             {
@@ -29,112 +28,112 @@ public class DataAccess
             }
             return dataAccessInstance;
         }
-    }
 
-    //Executing select command
-    public DataTable ExecuteSelectCommand(string CommandName, CommandType cmdType)
-    {
-        SqlCommand cmd = null;
-        DataTable table = new DataTable();
-
-        cmd = con.CreateCommand();
-
-        cmd.CommandType = cmdType;
-        cmd.CommandText = CommandName;
-
-        try
+        //Executing select command
+        public DataTable ExecuteSelectCommand(string CommandName, CommandType cmdType)
         {
-            con.Open();
+            SqlCommand cmd = null;
+            DataTable table = new DataTable();
 
-            SqlDataAdapter da = null;
-            using (da = new SqlDataAdapter(cmd))
+            cmd = con.CreateCommand();
+
+            cmd.CommandType = cmdType;
+            cmd.CommandText = CommandName;
+
+            try
             {
-                da.Fill(table);
+                con.Open();
+
+                SqlDataAdapter da = null;
+                using (da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(table);
+                }
             }
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        finally
-        {
-            cmd.Dispose();
-            cmd = null;
-            con.Close();
-        }
-
-        return table;
-    }
-
-    public DataTable ExecuteParamerizedSelectCommand(string CommandName,
-                     CommandType cmdType, SqlParameter[] param)
-    {
-        SqlCommand cmd = null;
-        DataTable table = new DataTable();
-
-        cmd = con.CreateCommand();
-
-        cmd.CommandType = cmdType;
-        cmd.CommandText = CommandName;
-        cmd.Parameters.AddRange(param);
-
-        try
-        {
-            con.Open();
-
-            SqlDataAdapter da = null;
-            using (da = new SqlDataAdapter(cmd))
+            catch (Exception ex)
             {
-                da.Fill(table);
+                throw ex;
             }
+            finally
+            {
+                cmd.Dispose();
+                cmd = null;
+                con.Close();
+            }
+
+            return table;
         }
-        catch (Exception ex)
+
+        public DataTable ExecuteParamerizedSelectCommand(string CommandName,
+                         CommandType cmdType, SqlParameter[] param)
         {
-            throw ex;
+            SqlCommand cmd = null;
+            DataTable table = new DataTable();
+
+            cmd = con.CreateCommand();
+
+            cmd.CommandType = cmdType;
+            cmd.CommandText = CommandName;
+            cmd.Parameters.AddRange(param);
+
+            try
+            {
+                con.Open();
+
+                SqlDataAdapter da = null;
+                using (da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(table);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                cmd = null;
+                con.Close();
+            }
+
+            return table;
         }
-        finally
+
+        //Executing Update, Delete, and Insert Commands
+        public bool ExecuteNonQuery(string CommandName, CommandType cmdType, SqlParameter[] pars)
         {
-            cmd.Dispose();
-            cmd = null;
-            con.Close();
+            SqlCommand cmd = null;
+            int res = 0;
+
+            cmd = con.CreateCommand();
+
+            cmd.CommandType = cmdType;
+            cmd.CommandText = CommandName;
+            cmd.Parameters.AddRange(pars);
+
+            try
+            {
+                con.Open();
+
+                res = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                cmd = null;
+                con.Close();
+            }
+
+            if (res >= 1)
+            {
+                return true;
+            }
+            return false;
         }
-
-        return table;
-    }
-
-    //Executing Update, Delete, and Insert Commands
-    public bool ExecuteNonQuery(string CommandName, CommandType cmdType, SqlParameter[] pars)
-    {
-        SqlCommand cmd = null;
-        int res = 0;
-
-        cmd = con.CreateCommand();
-
-        cmd.CommandType = cmdType;
-        cmd.CommandText = CommandName;
-        cmd.Parameters.AddRange(pars);
-
-        try
-        {
-            con.Open();
-
-            res = cmd.ExecuteNonQuery();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        finally
-        {
-            cmd.Dispose();
-            cmd = null;
-            con.Close();
-        }
-
-        if (res >= 1)
-        {
-            return true;
-        }
-        return false;
     }
 }
