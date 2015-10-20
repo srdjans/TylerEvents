@@ -13,13 +13,22 @@ namespace TylerEvents {
     public partial class _Default {
         
         /// <summary>
-        /// CurrentMonthEventsDataSource control.
+        /// OwnedEvents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource CurrentMonthEventsDataSource;
+        protected global::System.Web.UI.WebControls.SqlDataSource OwnedEvents;
+        
+        /// <summary>
+        /// RegisteredEventsDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource RegisteredEventsDataSource;
         
         /// <summary>
         /// UpcommingEventsDataSource control.
@@ -31,22 +40,22 @@ namespace TylerEvents {
         protected global::System.Web.UI.WebControls.SqlDataSource UpcommingEventsDataSource;
         
         /// <summary>
-        /// GridView2 control.
+        /// OwnedEventsGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView OwnedEventsGrid;
         
         /// <summary>
-        /// GridView1 control.
+        /// RegisteredEvents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView RegisteredEvents;
         
         /// <summary>
         /// UpcomingEvents control.

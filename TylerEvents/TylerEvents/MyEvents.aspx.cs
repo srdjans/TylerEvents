@@ -18,5 +18,10 @@ namespace TylerEvents
         {
             e.Command.Parameters[0].Value = this.User.Identity.Name;  
         }
+
+        protected void OwnedEvents_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+            e.Command.Parameters[0].Value = this.User.Identity.Name;
+        }
     }
 }
