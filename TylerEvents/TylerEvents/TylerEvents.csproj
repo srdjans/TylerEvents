@@ -154,10 +154,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AllEvents.aspx" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker-standalone.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="EventDetail.aspx" />
     <Content Include="MyEvents.aspx" />
     <Content Include="NewEvent.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
@@ -175,7 +177,6 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -223,6 +224,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="UserSubscribedCategories.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -344,8 +346,25 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AllEvents.aspx.cs">
+      <DependentUpon>AllEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllEvents.aspx.designer.cs">
+      <DependentUpon>AllEvents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\BaseParameterPasser.cs" />
+    <Compile Include="App_Code\UrlParameterPasser.cs" />
     <Compile Include="App_Code\DataAccess.cs" />
+    <Compile Include="App_Code\EventData.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="EventDetail.aspx.cs">
+      <DependentUpon>EventDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventDetail.aspx.designer.cs">
+      <DependentUpon>EventDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyEvents.aspx.cs">
       <DependentUpon>MyEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -363,13 +382,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -397,6 +409,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="UserSubscribedCategories.ascx.cs">
+      <DependentUpon>UserSubscribedCategories.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSubscribedCategories.ascx.designer.cs">
+      <DependentUpon>UserSubscribedCategories.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

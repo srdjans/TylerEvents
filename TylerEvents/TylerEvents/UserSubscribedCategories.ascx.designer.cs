@@ -10,15 +10,15 @@
 namespace TylerEvents {
     
     
-    public partial class Settings {
+    public partial class UserSubscribedCategories {
         
         /// <summary>
-        /// phUserSubscribedCategories control.
+        /// RemoveCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phUserSubscribedCategories;
+        protected global::System.Web.UI.WebControls.Button RemoveCategory;
     }
 }

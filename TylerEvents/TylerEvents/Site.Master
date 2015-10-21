@@ -85,7 +85,7 @@
     <script src="Scripts/bootstrap-datepicker.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/bootstrap-datetimepicker.min.js"></script>
-
+    <script src="Scripts/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
         $('.input-daterange input').each(function() {
         $(this).datepicker("clearDates");

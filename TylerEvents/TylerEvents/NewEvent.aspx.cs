@@ -17,11 +17,11 @@ namespace TylerEvents
 
         protected void AddEvent_Click(object sender, EventArgs e)
         {
-
-            // XXXMukta: To Remove
-            string tempOwnerId = "a14e1f21-5a2c-4d18-98db-6c1fbb938c70";
-            int maxNumParticipants = 0;
-            int minNumParticipants = 0;
+            string              ownerUserName = this.User.Identity.Name;
+            int                 maxNumParticipants = 0;
+            int                 minNumParticipants = 0;
+            string              eventId;
+            UrlParameterPasser  urlWrapper;
 
             if (this.IsValid)
             {
@@ -45,8 +45,19 @@ namespace TylerEvents
                     EventEndDateTime.Text,
                     EventDescription.Text,
                     maxNumParticipants,
-                    minNumParticipants, 
-                    tempOwnerId);
+                    minNumParticipants,
+                    ownerUserName);
+
+                eventId = insertEventToDB.getEventIdFromEventNameAndDateTime(EventTitle.Text, EventStartDateTime.Text);
+
+                // Pass textbox values to ReceiveQueryString.aspx
+                urlWrapper = new UrlParameterPasser("EventDetail.aspx");
+
+                // Add some values
+                urlWrapper["eventId"] = eventId;
+
+                // Redirect to the page, passing the parameters in the querystring
+                urlWrapper.PassParameters();
             }
         }
     }

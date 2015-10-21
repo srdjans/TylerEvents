@@ -55,7 +55,6 @@
                 <asp:RegularExpressionValidator ID="MaxParticipantsValidator" runat="server" ErrorMessage="Please enter a valid number!!" ForeColor="Red" ControlToValidate="MinParticipants" ValidationExpression="[-+]?\d+"></asp:RegularExpressionValidator>
             </div>
         </div>
-    </div>
-
-    <asp:Button ID="AddEvent" runat="server" Text="Add Event" CssClass="btn btn-lg btn-primary" OnClick="AddEvent_Click"/>
+        <asp:Button ID="AddEvent" runat="server" Text="Add Event" CssClass="btn btn-lg btn-primary" OnClick="AddEvent_Click"/>
+    </div>    
 </asp:Content>

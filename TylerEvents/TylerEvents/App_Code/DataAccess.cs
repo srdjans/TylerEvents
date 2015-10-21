@@ -137,6 +137,23 @@ namespace TylerEvents
             return false;
         }
 
+        private string getUserIdFromUserName(string userName)
+        {
+            SqlParameter[] userIdParams = new SqlParameter[1];
+            userIdParams[0] = new SqlParameter("@UserName", userName);
+
+            return this.ExecuteParamerizedSelectCommand("AspNetUsers_GetIdFromUserName", CommandType.StoredProcedure, userIdParams).Rows[0]["Id"].ToString();
+        }
+
+        public string getEventIdFromEventNameAndDateTime(string eventName, string eventStartDateTime)
+        {
+            SqlParameter[] userIdParams = new SqlParameter[2];
+            userIdParams[0] = new SqlParameter("@EventName", eventName);
+            userIdParams[1] = new SqlParameter("@StartDateTime", eventStartDateTime);
+
+            return this.ExecuteParamerizedSelectCommand("Events_GetEventIdFromNameAndDateTime", CommandType.StoredProcedure, userIdParams).Rows[0]["RecId"].ToString();
+        }
+
         public void insertEvent(
             string eventTitle, 
             string eventLocation, 
@@ -145,21 +162,25 @@ namespace TylerEvents
             string eventDescription,
             int    maxParticipants,
             int    minParticipants,
-            string ownerId)
+            string ownerUserName)
         {
-
+            
             SqlParameter[] valuesToInsert = new SqlParameter[8];
+            string ownerUserId = this.getUserIdFromUserName(ownerUserName);
 
-            valuesToInsert[0] = new SqlParameter("@EventName", eventTitle);
-            valuesToInsert[1] = new SqlParameter("@Location", eventLocation);
-            valuesToInsert[2] = new SqlParameter("@StartDateTime", eventStartDateTime);
-            valuesToInsert[3] = new SqlParameter("@EndDateTime", eventEndDateTime);
-            valuesToInsert[4] = new SqlParameter("@Description", eventDescription);
-            valuesToInsert[5] = new SqlParameter("@MaxParticipants", maxParticipants);
-            valuesToInsert[6] = new SqlParameter("@MinParticipants", minParticipants);
-            valuesToInsert[7] = new SqlParameter("@OwnerId", ownerId);
+            if (ownerUserId != "")
+            {
+                valuesToInsert[0] = new SqlParameter("@EventName", eventTitle);
+                valuesToInsert[1] = new SqlParameter("@Location", eventLocation);
+                valuesToInsert[2] = new SqlParameter("@StartDateTime", eventStartDateTime);
+                valuesToInsert[3] = new SqlParameter("@EndDateTime", eventEndDateTime);
+                valuesToInsert[4] = new SqlParameter("@Description", eventDescription);
+                valuesToInsert[5] = new SqlParameter("@MaxParticipants", maxParticipants);
+                valuesToInsert[6] = new SqlParameter("@MinParticipants", minParticipants);
+                valuesToInsert[7] = new SqlParameter("@OwnerId", ownerUserId);
 
-            this.ExecuteNonQuery(InsertEvent, CommandType.StoredProcedure, valuesToInsert);
+                this.ExecuteNonQuery(InsertEvent, CommandType.StoredProcedure, valuesToInsert);
+            }
         }
 
         public EventData retrieveEventDetailsFromId(Int64 EventId)
