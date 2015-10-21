@@ -63,7 +63,7 @@
                         <li><a runat="server" href="~\NewEvent"><span class="glyphicon glyphicon-plus"></span>Create Event</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a runat="server" href="~\Settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                        <%--<li><a runat="server" href="~\Settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>--%>
                         <li><asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Account/Login" OnLoggingOut="Unnamed_LoggingOut" /></li>
                     </ul>
                 </div>
