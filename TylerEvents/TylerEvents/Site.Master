@@ -64,7 +64,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" href="~\Settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                        <li><a href="Account/Login.aspx"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+                        <li><asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Account/Login" OnLoggingOut="Unnamed_LoggingOut" /></li>
                     </ul>
                 </div>
             </div>
