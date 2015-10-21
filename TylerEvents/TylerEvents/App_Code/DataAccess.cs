@@ -264,7 +264,7 @@ namespace TylerEvents
             return this.ExecuteNonQuery("Events_JoinEvent", CommandType.StoredProcedure, eventIdParams);
         }
 
-        public bool checkUserIsAlreadyParticcipant(Int64 EventId, string userName)
+        public bool checkUserIsAlreadyParticipant(Int64 EventId, string userName)
         {
             SqlParameter[] eventIdParams = new SqlParameter[2];
             EventData eventDetails = new EventData();
@@ -274,12 +274,31 @@ namespace TylerEvents
             eventIdParams[0] = new SqlParameter("@EventId", EventId);
             eventIdParams[1] = new SqlParameter("@UserId", userId);
 
-            return (this.ExecuteParamerizedSelectCommand("Participants_GetEventParticipant", CommandType.StoredProcedure, eventIdParams) != null);
+            return (this.ExecuteParamerizedSelectCommand("Participants_GetEventParticipant", CommandType.StoredProcedure, eventIdParams).Rows.Count != 0);
+        }
+
+        public bool checkUserNameBelongsToUserId(string userId, string userName)
+        {
+            SqlParameter[] eventIdParams = new SqlParameter[1];
+            EventData eventDetails = new EventData();
+
+            string userNameId = this.getUserIdFromUserName(userName);
+
+            return (userName == userNameId);
         }
 
         public DataTable retrieveAllEvents()
         {
             return this.ExecuteSelectCommand(GetAllEvents, CommandType.StoredProcedure);
+        }
+
+        public int getNumberOfParticipantsInEvent(Int64 eventId)
+        {
+            SqlParameter[] userIdParams = new SqlParameter[1];
+
+            userIdParams[0] = new SqlParameter("@EventId", eventId);
+
+            return Int32.Parse(this.ExecuteParamerizedSelectCommand("Participants_GetNumberOfParticipantsInEvent", CommandType.StoredProcedure, userIdParams).Rows[0]["Num"].ToString());
         }
     }
 }
