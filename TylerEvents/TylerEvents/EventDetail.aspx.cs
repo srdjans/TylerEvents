@@ -58,6 +58,7 @@ namespace TylerEvents
                 if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
                 {
                     JoinEvent.Visible = false;
+                    LeaveEvent.Visible = true;
                 }
             }
             else
@@ -109,6 +110,22 @@ namespace TylerEvents
             {
                 Alert.Show("Sorry, but this event is already full.");
             }
+
+            LeaveEvent.Visible = true;
+            JoinEvent.Visible = false;
+        }
+
+        protected void LeaveEvent_Click(object sender, EventArgs e)
+        {
+            string userName = this.User.Identity.Name;
+            DataAccess addPartiicipantToDB = DataAccess.Instance();
+
+            addPartiicipantToDB.leaveEvent(eventRecId, userName);
+
+            LeaveEvent.Visible = false;
+            JoinEvent.Visible = true;
+
+            Alert.Show("You have left the event " + EventTitle.Text);
         }
 
         protected void SaveEvent_Click(object sender, EventArgs e)

@@ -264,6 +264,19 @@ namespace TylerEvents
             return this.ExecuteNonQuery("Events_JoinEvent", CommandType.StoredProcedure, eventIdParams);
         }
 
+        public bool leaveEvent(Int64 EventId, string userName)
+        {
+            SqlParameter[] eventIdParams = new SqlParameter[2];
+            EventData eventDetails = new EventData();
+
+            string userId = this.getUserIdFromUserName(userName);
+
+            eventIdParams[0] = new SqlParameter("@EventId", EventId);
+            eventIdParams[1] = new SqlParameter("@UserId", userId);
+
+            return this.ExecuteNonQuery("Events_LeaveEvent", CommandType.StoredProcedure, eventIdParams);
+        }
+
         public bool checkUserIsAlreadyParticipant(Int64 EventId, string userName)
         {
             SqlParameter[] eventIdParams = new SqlParameter[2];
