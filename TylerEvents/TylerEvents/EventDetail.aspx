@@ -61,7 +61,7 @@
         </div>
         <asp:Button ID="JoinEvent" runat="server" Text="Join Event" CssClass="btn btn-lg btn-primary" OnClick="JoinEvent_Click"/>
         <asp:Button ID="SaveEvent" Visible="false" runat="server" Text="Save Event" CssClass="btn btn-lg btn-primary" OnClick="SaveEvent_Click"/>
-        <asp:Button ID="DeleteEvent" runat="server" Text="Save Event" CssClass="btn btn-lg btn-primary" OnClick="DeleteEvent_Click"/>
+        <asp:Button ID="DeleteEvent" runat="server" Text="Delete Event" CssClass="btn btn-lg btn-primary" OnClick="DeleteEvent_Click"/>
         <br />
         <br />
         <asp:Panel ID="ChatPanel" runat="server">
