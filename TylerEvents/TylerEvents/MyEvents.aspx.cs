@@ -13,7 +13,12 @@ namespace TylerEvents
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                CalendarLabel.Text = "Events for " + DateTime.Today;
+                HomePageCalendar.SelectedDate = DateTime.Today;
+                this.filterCalendarGridOnDate(HomePageCalendar.SelectedDate.ToShortDateString());
+            }
         }
 
         protected void CurrentMonthEventsDataSource_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
@@ -29,16 +34,6 @@ namespace TylerEvents
         protected void HomePageCalendar_SelectionChanged(object sender, EventArgs e)
         {
             this.filterCalendarGridOnDate(HomePageCalendar.SelectedDate.ToShortDateString());
-            /*UrlParameterPasser urlWrapper;
-
-            // Pass textbox values to ReceiveQueryString.aspx
-            urlWrapper = new UrlParameterPasser("AllEvents.aspx");
-
-            // Add some values
-            urlWrapper["filterDate"] = HomePageCalendar.SelectedDate.ToShortDateString();
-
-            // Redirect to the page, passing the parameters in the querystring
-            urlWrapper.PassParameters();*/
         }
 
         private void filterCalendarGridOnDate(string dateString)
@@ -48,14 +43,26 @@ namespace TylerEvents
                 CalendarEvents.DataSourceID = null;
                 CalendarEvents.DataSource = CalendarEventsDataSource;
                 CalendarEventsDataSource.SelectParameters["FilterDate"].DefaultValue = dateString;
+                CalendarLabel.Text = "Events for " + dateString;
+
                 CalendarPanel.Visible = true;
             }
             else
             {
+                NoEventsTodayLabel.Visible = true;
                 CalendarPanel.Visible = false;
             }
 
             CalendarEvents.DataBind();
+
+            if (CalendarEvents.Rows.Count == 0)
+            {
+                NoEventsTodayLabel.Visible = true;
+            }
+            else
+            {
+                NoEventsTodayLabel.Visible = false;
+            }
         }
     }
 }

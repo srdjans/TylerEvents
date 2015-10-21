@@ -62,6 +62,8 @@
                 <asp:Panel ID="CalendarPanel" runat="server" visible="false" >
                     <br />
                     <Label>Events for date</Label>
+                    <h3><asp:Label ID="CalendarLabel" runat="server"/></h3>
+                    <asp:Label ID="NoEventsTodayLabel" Text="No events for the selected day." runat="server" />
                     <asp:GridView ID="CalendarEvents" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="CalendarEventsDataSource" DataKeyNames="RecId">
                         <Columns>
                             <asp:HyperLinkField DataNavigateUrlFields="RecId" DataNavigateUrlFormatString="EventDetail.aspx?eventId={0}" DataTextField="EventName" HeaderText="Event Name" SortExpression="EventName"/>
