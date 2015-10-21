@@ -28,6 +28,10 @@ namespace TylerEvents
             eventRecId = Convert.ToInt64(eventId);
 
             // Set the form data
+            if (!IsPostBack)
+            {
+                SaveEvent.Visible = false;
+
             EventData eventDetailsTable = DataAccess.Instance().retrieveEventDetailsFromId(eventRecId);
             //Need new stored procedure to get the data and count of all registered participants
 
@@ -44,10 +48,11 @@ namespace TylerEvents
             int maxParticipants = eventDetailsTable.MaxParticipants;
             int registeredParticipants = databaseAccess.getNumberOfParticipantsInEvent(eventRecId);
             //SetTheProgressBar(minParticipants, maxParticipants, registeredParticipants);
+            }
 
             if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
             {
-                JoinEvent.Enabled = false;
+                JoinEvent.Visible = false;
             }
 
             if (!this.IsPostBack)
@@ -83,7 +88,7 @@ namespace TylerEvents
             Alert.Show("Congratulations! You have successfully reggistered to " + EventTitle.Text);
         }
 
-        protected void UpdateEvent_Click(object sender, EventArgs e)
+        protected void SaveEvent_Click(object sender, EventArgs e)
         {
             string userName = this.User.Identity.Name;
             int maxNumParticipants = 0;
@@ -111,10 +116,33 @@ namespace TylerEvents
                 minNumParticipants,
                 userName,
                 eventRecId);
+            
+            JoinEvent.Visible = false;
+            editButton.Visible = true;
+            SaveEvent.Visible = false;
+
+            EventTitle.Enabled = false;
+            EventStartDateTime.Enabled = false;
+            EventEndDateTime.Enabled = false;
+            EventLocation.Enabled = false;
+            EventDescription.Enabled = false;
+            MinParticipants.Enabled = false;
+            MaxParticipants.Enabled = false;
         }
 
         protected void EditButton_ServerClick(object sender, EventArgs e)
         {
+            EventTitle.Enabled = true;
+            EventStartDateTime.Enabled = true;
+            EventEndDateTime.Enabled = true;
+            EventLocation.Enabled = true;
+            EventDescription.Enabled = true;
+            MinParticipants.Enabled = true;
+            MaxParticipants.Enabled = true;
+
+            SaveEvent.Visible = true;
+            editButton.Visible = false;
+        }
 
         }
 
@@ -136,6 +164,9 @@ namespace TylerEvents
             DataAccess accessDataBase = DataAccess.Instance();
             this.rptComments.DataSource = accessDataBase.getAllCommentsForEvent(eventRecId);
             this.rptComments.DataBind();
+        protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+            e.Command.Parameters[0].Value = eventRecId;
         }
     }
 }

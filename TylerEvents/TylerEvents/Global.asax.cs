@@ -17,5 +17,11 @@ namespace TylerEvents
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            if (Request.AppRelativeCurrentExecutionFilePath.Equals("~/"))
+                HttpContext.Current.RewritePath("~/MyEvents");
+        }
     }
 }
