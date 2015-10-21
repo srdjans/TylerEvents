@@ -18,7 +18,7 @@
         <asp:RequiredFieldValidator ID="LocationRequired" runat="server" ErrorMessage="Location is required!!" ForeColor="Red" ControlToValidate="EventLocation"></asp:RequiredFieldValidator>
         <br />
         <div class="row">
-            <div class='col-sm-3'>
+            <div class='col-sm-4'>
                 <label>Start Date and Time</label>
                 <div class="form-group">
                     <div class='input-group date' id='startDateTimePicker'>
@@ -30,7 +30,7 @@
                     <asp:RequiredFieldValidator ID="EventStartDateTimeRequired" runat="server" ErrorMessage="Start date and time are required!!" ForeColor="Red" ControlToValidate="EventStartDateTime"></asp:RequiredFieldValidator>
                 </div>
             </div>
-            <div class='col-sm-3'>
+            <div class='col-sm-4'>
                 <label>End Date and Time</label>
                 <div class="form-group">
                     <div class='input-group date' id='endDateTimePicker'>
