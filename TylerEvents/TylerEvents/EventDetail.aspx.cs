@@ -96,11 +96,19 @@ namespace TylerEvents
         protected void JoinEvent_Click(object sender, EventArgs e)
         {
             string userName = this.User.Identity.Name;
-            DataAccess addPartiicipantToDB = DataAccess.Instance();
+            DataAccess databaseAccess = DataAccess.Instance();
 
-            addPartiicipantToDB.joinEvent(eventRecId, userName);
+            EventData eventDetailsTable = DataAccess.Instance().retrieveEventDetailsFromId(eventRecId);
 
-            Alert.Show("Congratulations! You have successfully reggistered to " + EventTitle.Text);
+            if (databaseAccess.getNumberOfParticipantsInEvent(eventRecId) + 1 <= eventDetailsTable.MaxParticipants || eventDetailsTable.MaxParticipants == 0)
+            {
+                databaseAccess.joinEvent(eventRecId, userName);
+                Alert.Show("Congratulations! You have successfully registered to " + EventTitle.Text);
+            }
+            else
+            {
+                Alert.Show("Sorry, but this event is already full.");
+            }
         }
 
         protected void SaveEvent_Click(object sender, EventArgs e)
