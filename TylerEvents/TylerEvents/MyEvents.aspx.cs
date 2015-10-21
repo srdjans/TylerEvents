@@ -44,14 +44,25 @@ namespace TylerEvents
                 CalendarEvents.DataSource = CalendarEventsDataSource;
                 CalendarEventsDataSource.SelectParameters["FilterDate"].DefaultValue = dateString;
                 CalendarLabel.Text = "Events for " + dateString;
+
                 CalendarPanel.Visible = true;
             }
             else
             {
+                NoEventsTodayLabel.Visible = true;
                 CalendarPanel.Visible = false;
             }
 
             CalendarEvents.DataBind();
+
+            if (CalendarEvents.Rows.Count == 0)
+            {
+                NoEventsTodayLabel.Visible = true;
+            }
+            else
+            {
+                NoEventsTodayLabel.Visible = false;
+            }
         }
     }
 }

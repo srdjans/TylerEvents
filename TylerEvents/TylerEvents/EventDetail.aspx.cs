@@ -105,14 +105,19 @@ namespace TylerEvents
             {
                 databaseAccess.joinEvent(eventRecId, userName);
                 Alert.Show("Congratulations! You have successfully registered to " + EventTitle.Text);
+
+                LeaveEvent.Visible = true;
+                JoinEvent.Visible = false;
             }
             else
             {
                 Alert.Show("Sorry, but this event is already full.");
+
+                LeaveEvent.Visible = false;
+                JoinEvent.Visible = true;
             }
 
-            LeaveEvent.Visible = true;
-            JoinEvent.Visible = false;
+            
         }
 
         protected void LeaveEvent_Click(object sender, EventArgs e)
