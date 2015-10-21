@@ -16,7 +16,10 @@ namespace TylerEvents
         protected void Page_Load(object sender, EventArgs e)
         {
             string eventId;
-            
+
+            string userName = this.User.Identity.Name;
+            DataAccess databaseAccess = DataAccess.Instance();
+
             // Receive the parameters
             UrlParameterPasser urlWrapper = new UrlParameterPasser();
             eventId = urlWrapper["eventId"];
@@ -37,8 +40,13 @@ namespace TylerEvents
             //Progress Bar data
             int minParticipants = eventDetailsTable.MinParticipants;
             int maxParticipants = eventDetailsTable.MaxParticipants;
-            int registeredParticipants = 0;// will be set to count of particapants
+            int registeredParticipants = databaseAccess.getNumberOfParticipantsInEvent(eventRecId);
             //SetTheProgressBar(minParticipants, maxParticipants, registeredParticipants);
+
+            if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
+            {
+                JoinEvent.Enabled = false;
+            }
         }
 
         protected void SetTheProgressBar(int min, int max, int registered)
@@ -96,6 +104,11 @@ namespace TylerEvents
                 minNumParticipants,
                 userName,
                 eventRecId);
+        }
+
+        protected void EditButton_ServerClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace TylerEvents
 {
@@ -26,7 +28,8 @@ namespace TylerEvents
 
         protected void HomePageCalendar_SelectionChanged(object sender, EventArgs e)
         {
-            UrlParameterPasser urlWrapper;
+            this.filterCalendarGridOnDate(HomePageCalendar.SelectedDate.ToShortDateString());
+            /*UrlParameterPasser urlWrapper;
 
             // Pass textbox values to ReceiveQueryString.aspx
             urlWrapper = new UrlParameterPasser("AllEvents.aspx");
@@ -35,7 +38,24 @@ namespace TylerEvents
             urlWrapper["filterDate"] = HomePageCalendar.SelectedDate.ToShortDateString();
 
             // Redirect to the page, passing the parameters in the querystring
-            urlWrapper.PassParameters();
+            urlWrapper.PassParameters();*/
+        }
+
+        private void filterCalendarGridOnDate(string dateString)
+        {
+            if (dateString != "")
+            {
+                CalendarEvents.DataSourceID = null;
+                CalendarEvents.DataSource = CalendarEventsDataSource;
+                CalendarEventsDataSource.SelectParameters["FilterDate"].DefaultValue = dateString;
+                CalendarPanel.Visible = true;
+            }
+            else
+            {
+                CalendarPanel.Visible = false;
+            }
+
+            CalendarEvents.DataBind();
         }
     }
 }

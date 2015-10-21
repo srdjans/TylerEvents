@@ -50,6 +50,8 @@ namespace TylerEvents
 
                 eventId = insertEventToDB.getEventIdFromEventNameAndDateTime(EventTitle.Text, EventStartDateTime.Text);
 
+                insertEventToDB.joinEvent(Int64.Parse(eventId), ownerUserName);
+
                 // Pass textbox values to ReceiveQueryString.aspx
                 urlWrapper = new UrlParameterPasser("EventDetail.aspx");
 
