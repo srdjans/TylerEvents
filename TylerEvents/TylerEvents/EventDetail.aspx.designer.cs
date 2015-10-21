@@ -13,31 +13,121 @@ namespace TylerEvents {
     public partial class Contact {
         
         /// <summary>
-        /// EventNameLabel control.
+        /// EventTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EventNameLabel;
+        protected global::System.Web.UI.WebControls.TextBox EventTitle;
         
         /// <summary>
-        /// DateTimeLabel control.
+        /// EventTitleRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DateTimeLabel;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EventTitleRequired;
         
         /// <summary>
-        /// LocationLabel control.
+        /// EventLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LocationLabel;
+        protected global::System.Web.UI.WebControls.TextBox EventLocation;
+        
+        /// <summary>
+        /// LocationRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator LocationRequired;
+        
+        /// <summary>
+        /// EventStartDateTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EventStartDateTime;
+        
+        /// <summary>
+        /// EventStartDateTimeRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EventStartDateTimeRequired;
+        
+        /// <summary>
+        /// EventEndDateTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EventEndDateTime;
+        
+        /// <summary>
+        /// EventEndDateTimeRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EventEndDateTimeRequired;
+        
+        /// <summary>
+        /// EventDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EventDescription;
+        
+        /// <summary>
+        /// MinParticipants control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MinParticipants;
+        
+        /// <summary>
+        /// MinParticipantsValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MinParticipantsValidator;
+        
+        /// <summary>
+        /// MaxParticipants control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MaxParticipants;
+        
+        /// <summary>
+        /// MaxParticipantsValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MaxParticipantsValidator;
         
         /// <summary>
         /// JoinEvent control.
@@ -47,24 +137,6 @@ namespace TylerEvents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button JoinEvent;
-        
-        /// <summary>
-        /// DescriptionPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel DescriptionPanel;
-        
-        /// <summary>
-        /// DescriptionLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DescriptionLabel;
         
         /// <summary>
         /// ChatPanel control.
