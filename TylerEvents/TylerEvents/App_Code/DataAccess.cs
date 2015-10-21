@@ -183,6 +183,37 @@ namespace TylerEvents
             }
         }
 
+        public void updateEvent(
+            string eventTitle,
+            string eventLocation,
+            string eventStartDateTime,
+            string eventEndDateTime,
+            string eventDescription,
+            int maxParticipants,
+            int minParticipants,
+            string userName,
+            int eventIdToUpdate)
+        {
+
+            SqlParameter[] valuesToUpdate = new SqlParameter[9];
+            string userId = this.getUserIdFromUserName(userName);
+
+            if (userId != "")
+            {
+                valuesToUpdate[0] = new SqlParameter("@EventName", eventTitle);
+                valuesToUpdate[1] = new SqlParameter("@Location", eventLocation);
+                valuesToUpdate[2] = new SqlParameter("@StartDateTime", eventStartDateTime);
+                valuesToUpdate[3] = new SqlParameter("@EndDateTime", eventEndDateTime);
+                valuesToUpdate[4] = new SqlParameter("@Description", eventDescription);
+                valuesToUpdate[5] = new SqlParameter("@MaxParticipants", maxParticipants);
+                valuesToUpdate[6] = new SqlParameter("@MinParticipants", minParticipants);
+                valuesToUpdate[7] = new SqlParameter("@OwnerId", userId);
+                valuesToUpdate[8] = new SqlParameter("@EventId", eventIdToUpdate);
+
+                this.ExecuteNonQuery("Events_UpdateEvent", CommandType.StoredProcedure, valuesToUpdate);
+            }
+        }
+
         public EventData retrieveEventDetailsFromId(Int64 EventId)
         {
             SqlParameter[] eventIdParams = new SqlParameter[1];
@@ -203,6 +234,30 @@ namespace TylerEvents
             eventDetails.OwnerId = data.Rows[0]["OwnerId"].ToString();
 
             return eventDetails;
+        }
+
+        public void removeEvent(Int64 EventId)
+        {
+            SqlParameter[] eventIdParams = new SqlParameter[1];
+            EventData eventDetails = new EventData();
+
+            eventIdParams[0] = new SqlParameter("@EventId", EventId);
+
+            this.ExecuteNonQuery("Events_DeleteEvents", CommandType.StoredProcedure, eventIdParams);
+        }
+        
+
+        public void joinEvent(Int64 EventId, string userName)
+        {
+            SqlParameter[] eventIdParams = new SqlParameter[2];
+            EventData eventDetails = new EventData();
+
+            string userId = this.getUserIdFromUserName(userName);
+
+            eventIdParams[0] = new SqlParameter("@EventId", EventId);
+            eventIdParams[1] = new SqlParameter("@UserId", userId);
+
+            this.ExecuteNonQuery("Events_JoinEvent", CommandType.StoredProcedure, eventIdParams);
         }
 
         public DataTable retrieveAllEvents()
