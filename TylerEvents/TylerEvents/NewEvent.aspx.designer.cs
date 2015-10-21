@@ -112,6 +112,15 @@ namespace TylerEvents {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator MinParticipantsValidator;
         
         /// <summary>
+        /// cvMinParticipants control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvMinParticipants;
+        
+        /// <summary>
         /// MaxParticipants control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace TylerEvents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator MaxParticipantsValidator;
+        
+        /// <summary>
+        /// cvtxtMaxParticipants control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvtxtMaxParticipants;
         
         /// <summary>
         /// AddEvent control.
