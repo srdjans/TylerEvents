@@ -54,7 +54,8 @@
                 <asp:RegularExpressionValidator ID="MaxParticipantsValidator" runat="server" ErrorMessage="Please enter a valid number!!" ForeColor="Red" ControlToValidate="MinParticipants" ValidationExpression="[-+]?\d+"></asp:RegularExpressionValidator>
             </div>
         </div>
-            <asp:Button ID="JoinEvent" runat="server" Text="Join Event" CssClass="btn btn-lg btn-primary" OnClick="JoinEvent_Click"/>
+        <asp:Button ID="JoinEvent" runat="server" Text="Join Event" CssClass="btn btn-lg btn-primary" OnClick="JoinEvent_Click"/>
+        <asp:Button ID="SaveEvent" runat="server" Text="Save Event" CssClass="btn btn-lg btn-primary" OnClick="SaveEvent_Click"/>
 
         <br />
         <br />
@@ -71,8 +72,7 @@
                     <div class="col-xs-8">
                         <asp:Label ID="UserName" runat="server" Text='<%# Eval("UserName") %>'></asp:Label>
                         <asp:Label ID="lblCommentBody" runat="server" Text='<%# Eval("CommentBody") %>'></asp:Label>
-            <asp:Button ID="SaveEvent" runat="server" Text="Save Event" CssClass="btn btn-lg btn-primary" OnClick="SaveEvent_Click"/>
-    </div>
+                </div>
                 </ItemTemplate>
             </asp:Repeater>
         </asp:Panel>

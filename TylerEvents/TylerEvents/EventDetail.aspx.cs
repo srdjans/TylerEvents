@@ -144,8 +144,6 @@ namespace TylerEvents
             editButton.Visible = false;
         }
 
-        }
-
         protected void AddComment(object sender, EventArgs e)
         {
             DataAccess accessDataBase = DataAccess.Instance();
@@ -164,6 +162,8 @@ namespace TylerEvents
             DataAccess accessDataBase = DataAccess.Instance();
             this.rptComments.DataSource = accessDataBase.getAllCommentsForEvent(eventRecId);
             this.rptComments.DataBind();
+        }
+
         protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
             e.Command.Parameters[0].Value = eventRecId;
