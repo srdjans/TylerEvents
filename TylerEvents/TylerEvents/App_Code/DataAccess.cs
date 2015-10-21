@@ -279,11 +279,9 @@ namespace TylerEvents
 
         public bool checkUserNameBelongsToUserId(string userId, string userName)
         {
-            EventData eventDetails = new EventData();
-
             string userNameId = this.getUserIdFromUserName(userName);
 
-            return (userName == userNameId);
+            return (userId == userNameId);
         }
 
         public DataTable retrieveAllEvents()

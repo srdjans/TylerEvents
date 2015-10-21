@@ -27,12 +27,12 @@ namespace TylerEvents
             eventId = urlWrapper["eventId"];
             eventRecId = Convert.ToInt64(eventId);
 
+            EventData eventDetailsTable = DataAccess.Instance().retrieveEventDetailsFromId(eventRecId);
+
             // Set the form data
             if (!IsPostBack)
             {
                 SaveEvent.Visible = false;
-
-            EventData eventDetailsTable = DataAccess.Instance().retrieveEventDetailsFromId(eventRecId);
             //Need new stored procedure to get the data and count of all registered participants
 
             EventTitle.Text = eventDetailsTable.EventName;
@@ -50,8 +50,20 @@ namespace TylerEvents
             //SetTheProgressBar(minParticipants, maxParticipants, registeredParticipants);
             }
 
-            if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
+            if (!databaseAccess.checkUserNameBelongsToUserId(eventDetailsTable.OwnerId, this.User.Identity.Name))
             {
+                DeleteEvent.Visible = false;
+                editButton.Visible = false;
+
+                if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
+                {
+                    JoinEvent.Visible = false;
+                }
+            }
+            else
+            {
+                DeleteEvent.Visible = true;
+                editButton.Visible = true;
                 JoinEvent.Visible = false;
             }
 
@@ -131,6 +143,15 @@ namespace TylerEvents
             EventDescription.Enabled = false;
             MinParticipants.Enabled = false;
             MaxParticipants.Enabled = false;
+        }
+
+        protected void DeleteEvent_Click(object sender, EventArgs e)
+        {
+            if (eventRecId != 0)
+            {
+                DataAccess.Instance().removeEvent(eventRecId);
+                Response.Redirect("/MyEvents");
+            }
         }
 
         protected void EditButton_ServerClick(object sender, EventArgs e)
