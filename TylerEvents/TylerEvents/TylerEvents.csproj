@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AllEvents.aspx" />
+    <Content Include="Content\blog.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker-standalone.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
