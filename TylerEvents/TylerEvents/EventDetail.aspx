@@ -93,7 +93,7 @@
             </asp:Repeater>
         </asp:Panel>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" style="background-color:whitesmoke; border-radius:10px; padding:15px">
         <div class="progress">
             <div Id="ProgressBarReachMin" class="progress-bar progress-bar-warning" role="progressbar" style= "width:0%">
                 Not enough<!--need a placeholder for the progress bar-->
@@ -104,7 +104,7 @@
 
             </div>
         </div>
-        <asp:Panel ID="AttendeesPanel" runat="server" BackColor="WhiteSmoke" Height="900px">
+        <asp:Panel ID="AttendeesPanel" runat="server">
             <asp:GridView ID="AttendeesList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="ParticipantsDataSource" DataKeyNames="UserName">
                 <Columns>
                     <asp:BoundField DataField="UserName" HeaderText="Participant User Names" SortExpression="UserName" />
