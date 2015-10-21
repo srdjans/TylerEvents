@@ -26,26 +26,31 @@ namespace TylerEvents
             eventRecId = Convert.ToInt64(eventId);
 
             // Set the form data
-            EventData eventDetailsTable = DataAccess.Instance().retrieveEventDetailsFromId(eventRecId);
-            //Need new stored procedure to get the data and count of all registered participants
+            if (!IsPostBack)
+            {
+                SaveEvent.Visible = false;
 
-            EventTitle.Text = eventDetailsTable.EventName;
-            EventStartDateTime.Text = eventDetailsTable.StartDateTime;
-            EventEndDateTime.Text = eventDetailsTable.StartDateTime;
-            EventLocation.Text = eventDetailsTable.Location;
-            EventDescription.Text = eventDetailsTable.Description;
-            MinParticipants.Text = eventDetailsTable.MinParticipants.ToString();
-            MaxParticipants.Text = eventDetailsTable.MaxParticipants.ToString();
+                EventData eventDetailsTable = DataAccess.Instance().retrieveEventDetailsFromId(eventRecId);
+                //Need new stored procedure to get the data and count of all registered participants
 
-            //Progress Bar data
-            int minParticipants = eventDetailsTable.MinParticipants;
-            int maxParticipants = eventDetailsTable.MaxParticipants;
-            int registeredParticipants = databaseAccess.getNumberOfParticipantsInEvent(eventRecId);
-            //SetTheProgressBar(minParticipants, maxParticipants, registeredParticipants);
+                EventTitle.Text = eventDetailsTable.EventName;
+                EventStartDateTime.Text = eventDetailsTable.StartDateTime;
+                EventEndDateTime.Text = eventDetailsTable.StartDateTime;
+                EventLocation.Text = eventDetailsTable.Location;
+                EventDescription.Text = eventDetailsTable.Description;
+                MinParticipants.Text = eventDetailsTable.MinParticipants.ToString();
+                MaxParticipants.Text = eventDetailsTable.MaxParticipants.ToString();
+
+                //Progress Bar data
+                int minParticipants = eventDetailsTable.MinParticipants;
+                int maxParticipants = eventDetailsTable.MaxParticipants;
+                int registeredParticipants = databaseAccess.getNumberOfParticipantsInEvent(eventRecId);
+                //SetTheProgressBar(minParticipants, maxParticipants, registeredParticipants);
+            }
 
             if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
             {
-                JoinEvent.Enabled = false;
+                JoinEvent.Visible = false;
             }
         }
 
@@ -76,7 +81,7 @@ namespace TylerEvents
             Alert.Show("Congratulations! You have successfully reggistered to " + EventTitle.Text);
         }
 
-        protected void UpdateEvent_Click(object sender, EventArgs e)
+        protected void SaveEvent_Click(object sender, EventArgs e)
         {
             string userName = this.User.Identity.Name;
             int maxNumParticipants = 0;
@@ -104,11 +109,37 @@ namespace TylerEvents
                 minNumParticipants,
                 userName,
                 eventRecId);
+            
+            JoinEvent.Visible = false;
+            editButton.Visible = true;
+            SaveEvent.Visible = false;
+
+            EventTitle.Enabled = false;
+            EventStartDateTime.Enabled = false;
+            EventEndDateTime.Enabled = false;
+            EventLocation.Enabled = false;
+            EventDescription.Enabled = false;
+            MinParticipants.Enabled = false;
+            MaxParticipants.Enabled = false;
         }
 
         protected void EditButton_ServerClick(object sender, EventArgs e)
         {
+            EventTitle.Enabled = true;
+            EventStartDateTime.Enabled = true;
+            EventEndDateTime.Enabled = true;
+            EventLocation.Enabled = true;
+            EventDescription.Enabled = true;
+            MinParticipants.Enabled = true;
+            MaxParticipants.Enabled = true;
 
+            SaveEvent.Visible = true;
+            editButton.Visible = false;
+        }
+
+        protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+            e.Command.Parameters[0].Value = eventRecId;
         }
     }
 }

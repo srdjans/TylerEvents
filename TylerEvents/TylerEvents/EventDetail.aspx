@@ -2,9 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="col-md-8">
-        <h3><%: Title   %><button runat="server" class = "btn btn-default" type = "button" onserverclick="EditButton_ServerClick"><i class="glyphicon glyphicon-edit">Edit</i></button></h3>
+        <h3><%: Title   %><button runat="server" ID="editButton" class = "btn btn-default" type = "button" onserverclick="EditButton_ServerClick"><i class="glyphicon glyphicon-edit">Edit</i></button>
+        </h3>
         <label>Event Title</label>
-        <asp:TextBox ID="EventTitle" runat="server" placeholder="Event Title" CssClass="form-control" Enabled="false"></asp:TextBox>
+&nbsp;<asp:TextBox ID="EventTitle" runat="server" placeholder="Event Title" CssClass="form-control" Enabled="false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="EventTitleRequired" runat="server" ErrorMessage="Event title is required!!" ForeColor="Red" ControlToValidate="EventTitle"></asp:RequiredFieldValidator>
         <br />
         <label>Location</label>
@@ -54,6 +55,7 @@
             </div>
         </div>
             <asp:Button ID="JoinEvent" runat="server" Text="Join Event" CssClass="btn btn-lg btn-primary" OnClick="JoinEvent_Click"/>
+            <asp:Button ID="SaveEvent" runat="server" Text="Save Event" CssClass="btn btn-lg btn-primary" OnClick="SaveEvent_Click"/>
     </div>
     <div>
         <asp:Panel ID="ChatPanel" runat="server">
