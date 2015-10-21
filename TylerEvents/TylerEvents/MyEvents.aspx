@@ -12,7 +12,11 @@
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="UpcommingEventsDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT RecId, EventName, Location, OwnerId, Description, MinParticipants, MaxParticipants, StartDateTime, EndDateTime FROM Events WHERE (StartDateTime &gt;= GETDATE()) AND (StartDateTime &lt;= DATEADD(DAY, 60, GETDATE()))"></asp:SqlDataSource>
-    
+    <asp:SqlDataSource ID="CalendarEventsDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT RecId, EventName, Location, OwnerId, Description, MinParticipants, MaxParticipants, StartDateTime, EndDateTime FROM Events WHERE StartDateTime Like '%'+@FilterDate+'%'">
+        <SelectParameters>
+            <asp:Parameter Name="FilterDate" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 
     <!--<div class="jumbotron">
         <h1>Tyler Events</h1>
@@ -54,18 +58,15 @@
         </div>
         <div class="col-md-3">
             <asp:Calendar ID="HomePageCalendar" runat="server" OnSelectionChanged="HomePageCalendar_SelectionChanged"></asp:Calendar>
-            <h3>Recently created</h3>
-            <div class="table-responive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Event name</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+            <asp:Panel ID="CalendarPanel" runat="server" visible="false" >
+                <h3>Events for date</h3>
+                <asp:GridView ID="CalendarEvents" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="CalendarEventsDataSource" DataKeyNames="RecId">
+                    <Columns>
+                        <asp:HyperLinkField DataNavigateUrlFields="RecId" DataNavigateUrlFormatString="EventDetail.aspx?eventId={0}" DataTextField="EventName" HeaderText="Event Name" SortExpression="EventName"/>
+                        <asp:BoundField DataField="StartDateTime" HeaderText="Start Date and Time" SortExpression="StartDateTime" />
+                    </Columns>
+                </asp:GridView>
+            </asp:Panel>
         </div>
     </div>
-
 </asp:Content>
