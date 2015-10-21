@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Web.UI.HtmlControls;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace TylerEvents
 {
@@ -46,6 +48,11 @@ namespace TylerEvents
             if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
             {
                 JoinEvent.Enabled = false;
+            }
+
+            if (!this.IsPostBack)
+            {
+                this.PopulateComments();
             }
         }
 
@@ -109,6 +116,26 @@ namespace TylerEvents
         protected void EditButton_ServerClick(object sender, EventArgs e)
         {
 
+        }
+
+        protected void AddComment(object sender, EventArgs e)
+        {
+            DataAccess accessDataBase = DataAccess.Instance();
+            UrlParameterPasser urlWrapper;
+
+            accessDataBase.addComment(eventRecId, this.User.Identity.Name, txtCommentBody.Text.Trim());
+
+            // Reload page
+            urlWrapper = new UrlParameterPasser("EventDetail.aspx");
+            urlWrapper["eventId"] = eventRecId.ToString();
+            urlWrapper.PassParameters();
+        }
+
+        private void PopulateComments()
+        {
+            DataAccess accessDataBase = DataAccess.Instance();
+            this.rptComments.DataSource = accessDataBase.getAllCommentsForEvent(eventRecId);
+            this.rptComments.DataBind();
         }
     }
 }

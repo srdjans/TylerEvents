@@ -54,13 +54,27 @@
             </div>
         </div>
             <asp:Button ID="JoinEvent" runat="server" Text="Join Event" CssClass="btn btn-lg btn-primary" OnClick="JoinEvent_Click"/>
-    </div>
-    <div>
-        <asp:Panel ID="ChatPanel" runat="server">
 
+        <br />
+        <br />
+        <asp:Panel ID="ChatPanel" runat="server">
+            <div class="row">
+                <label>Comment Body</label>
+                <asp:TextBox ID="txtCommentBody" runat="server" CssClass="form-control" TextMode="multiline" Rows="6"/>
+                <asp:Button ID="btnAdd" runat="server" OnClick="AddComment" Text="Add Comment" CssClass="btn btn-default" />
+                <asp:RequiredFieldValidator ID="rfvCommentBody" runat="server" Display="Dynamic"
+                    ControlToValidate="txtCommentBody" ErrorMessage="Please enter some text in the comment field!!" ForeColor="Red"></asp:RequiredFieldValidator>
+            </div>
+                <asp:Repeater ID="rptComments" runat="server">
+                <ItemTemplate>
+                    <div class="col-xs-8">
+                        <asp:Label ID="UserName" runat="server" Text='<%# Eval("UserName") %>'></asp:Label>
+                        <asp:Label ID="lblCommentBody" runat="server" Text='<%# Eval("CommentBody") %>'></asp:Label>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
         </asp:Panel>
     </div>
-  
     <div class="col-md-4">
         <div class="progress">
             <div Id="ProgressBarReachMin" class="progress-bar progress-bar-warning" role="progressbar" style= "width:0%">

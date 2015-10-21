@@ -279,7 +279,6 @@ namespace TylerEvents
 
         public bool checkUserNameBelongsToUserId(string userId, string userName)
         {
-            SqlParameter[] eventIdParams = new SqlParameter[1];
             EventData eventDetails = new EventData();
 
             string userNameId = this.getUserIdFromUserName(userName);
@@ -294,11 +293,33 @@ namespace TylerEvents
 
         public int getNumberOfParticipantsInEvent(Int64 eventId)
         {
-            SqlParameter[] userIdParams = new SqlParameter[1];
+            SqlParameter[] eventIdParams = new SqlParameter[1];
 
-            userIdParams[0] = new SqlParameter("@EventId", eventId);
+            eventIdParams[0] = new SqlParameter("@EventId", eventId);
 
-            return Int32.Parse(this.ExecuteParamerizedSelectCommand("Participants_GetNumberOfParticipantsInEvent", CommandType.StoredProcedure, userIdParams).Rows[0]["Num"].ToString());
+            return Int32.Parse(this.ExecuteParamerizedSelectCommand("Participants_GetNumberOfParticipantsInEvent", CommandType.StoredProcedure, eventIdParams).Rows[0]["Num"].ToString());
+        }
+
+        public bool addComment(Int64 eventId, string userName, string commentBody)
+        {
+            SqlParameter[] commentParams = new SqlParameter[3];
+            EventData eventDetails = new EventData();
+
+            commentParams[0] = new SqlParameter("@EventId", eventId);
+            commentParams[1] = new SqlParameter("@UserName", userName);
+            commentParams[2] = new SqlParameter("@CommentBody", commentBody);
+
+            return this.ExecuteNonQuery("Comments_Insert", CommandType.StoredProcedure, commentParams);
+        }
+
+        public DataTable getAllCommentsForEvent(Int64 eventId)
+        {
+            string sqlStatment = "SELECT UserName, CommentBody FROM Comments WHERE EventId=@EventId";
+            SqlParameter[] eventIdParams = new SqlParameter[1];
+
+            eventIdParams[0] = new SqlParameter("@EventId", eventId);
+
+            return this.ExecuteParamerizedSelectCommand(sqlStatment, CommandType.Text, eventIdParams);
         }
     }
 }
