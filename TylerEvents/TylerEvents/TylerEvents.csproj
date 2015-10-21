@@ -353,6 +353,7 @@
     <Compile Include="AllEvents.aspx.designer.cs">
       <DependentUpon>AllEvents.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\Alert.cs" />
     <Compile Include="App_Code\BaseParameterPasser.cs" />
     <Compile Include="App_Code\UrlParameterPasser.cs" />
     <Compile Include="App_Code\DataAccess.cs" />
