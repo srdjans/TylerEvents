@@ -58,6 +58,7 @@ namespace TylerEvents
                 if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
                 {
                     JoinEvent.Visible = false;
+                    LeaveEvent.Visible = true;
                 }
             }
             else
@@ -100,7 +101,23 @@ namespace TylerEvents
 
             addPartiicipantToDB.joinEvent(eventRecId, userName);
 
+            LeaveEvent.Visible = true;
+            JoinEvent.Visible = false;
+
             Alert.Show("Congratulations! You have successfully reggistered to " + EventTitle.Text);
+        }
+
+        protected void LeaveEvent_Click(object sender, EventArgs e)
+        {
+            string userName = this.User.Identity.Name;
+            DataAccess addPartiicipantToDB = DataAccess.Instance();
+
+            addPartiicipantToDB.leaveEvent(eventRecId, userName);
+
+            LeaveEvent.Visible = false;
+            JoinEvent.Visible = true;
+
+            Alert.Show("You have left the event " + EventTitle.Text);
         }
 
         protected void SaveEvent_Click(object sender, EventArgs e)

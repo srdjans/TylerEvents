@@ -60,6 +60,7 @@
             </div>
         </div>
         <asp:Button ID="JoinEvent" runat="server" Text="Join Event" CssClass="btn btn-lg btn-primary" OnClick="JoinEvent_Click"/>
+        <asp:Button ID="LeaveEvent" runat="server" Text="Leave Event" CssClass="btn btn-lg btn-primary" OnClick="LeaveEvent_Click" Visible="false"/>
         <asp:Button ID="SaveEvent" Visible="false" runat="server" Text="Save Event" CssClass="btn btn-lg btn-primary" OnClick="SaveEvent_Click"/>
         <asp:Button ID="DeleteEvent" runat="server" Text="Delete Event" CssClass="btn btn-lg btn-primary" OnClick="DeleteEvent_Click"/>
         <br />
@@ -105,7 +106,7 @@
         <asp:Panel ID="AttendeesPanel" runat="server">
             <asp:GridView ID="AttendeesList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="ParticipantsDataSource" DataKeyNames="UserName">
                 <Columns>
-                    <asp:BoundField DataField="UserName" HeaderText="Participant User Names" SortExpression="UserName" />
+                    <asp:BoundField DataField="UserName" HeaderText="Participants" SortExpression="UserName" />
                 </Columns>
             </asp:GridView>
         </asp:Panel>
