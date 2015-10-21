@@ -58,7 +58,7 @@ html {
 }
 
 body {
-  margin: 0;
+  margin: 10px;
 }
 
 a:focus {
@@ -4503,19 +4503,22 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
-  border-color: #080808;
+  background-color: #88a441;
+  border-color: #88a441;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #999999;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  
 }
 
-.navbar-inverse .navbar-brand:hover,
+/*.navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
   color: #ffffff;
   background-color: transparent;
-}
+}*/
 
 .navbar-inverse .navbar-text {
   color: #999999;
