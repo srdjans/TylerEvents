@@ -7,7 +7,7 @@
         </SelectParameters>
     </asp:SqlDataSource>
     <div class="col-md-8">
-        <h3><%: Title   %><button runat="server" ID="editButton" class = "btn btn-default" type = "button" onserverclick="EditButton_ServerClick"><i class="glyphicon glyphicon-edit">Edit</i></button>
+        <h3><%: Title   %>
         </h3>
         <label>Event Title</label>
 &nbsp;<asp:TextBox ID="EventTitle" runat="server" placeholder="Event Title" CssClass="form-control" Enabled="false"></asp:TextBox>
@@ -62,6 +62,7 @@
         <asp:Button ID="JoinEvent" runat="server" Text="Join Event" CssClass="btn btn-lg btn-primary" OnClick="JoinEvent_Click"/>
         <asp:Button ID="LeaveEvent" runat="server" Text="Leave Event" CssClass="btn btn-lg btn-primary" OnClick="LeaveEvent_Click" Visible="false"/>
         <asp:Button ID="SaveEvent" Visible="false" runat="server" Text="Save Event" CssClass="btn btn-lg btn-primary" OnClick="SaveEvent_Click"/>
+        <asp:Button ID="EditEvent" runat="server" Text="Edit Event" CssClass="btn btn-lg btn-primary" OnClick="EditButton_ServerClick"/>
         <asp:Button ID="DeleteEvent" runat="server" Text="Delete Event" CssClass="btn btn-lg btn-primary" OnClick="DeleteEvent_Click"/>
         <br />
         <br />

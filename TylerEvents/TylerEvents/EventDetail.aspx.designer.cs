@@ -22,15 +22,6 @@ namespace TylerEvents {
         protected global::System.Web.UI.WebControls.SqlDataSource ParticipantsDataSource;
         
         /// <summary>
-        /// editButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton editButton;
-        
-        /// <summary>
         /// EventTitle control.
         /// </summary>
         /// <remarks>
@@ -173,6 +164,15 @@ namespace TylerEvents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SaveEvent;
+        
+        /// <summary>
+        /// EditEvent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button EditEvent;
         
         /// <summary>
         /// DeleteEvent control.

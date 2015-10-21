@@ -53,7 +53,7 @@ namespace TylerEvents
             if (!databaseAccess.checkUserNameBelongsToUserId(eventDetailsTable.OwnerId, this.User.Identity.Name))
             {
                 DeleteEvent.Visible = false;
-                editButton.Visible = false;
+                EditEvent.Visible = false;
 
                 if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
                 {
@@ -64,7 +64,7 @@ namespace TylerEvents
             else
             {
                 DeleteEvent.Visible = true;
-                editButton.Visible = true;
+                EditEvent.Visible = true;
                 JoinEvent.Visible = false;
             }
 
@@ -150,7 +150,7 @@ namespace TylerEvents
                 eventRecId);
             
             JoinEvent.Visible = false;
-            editButton.Visible = true;
+            EditEvent.Visible = true;
             SaveEvent.Visible = false;
 
             EventTitle.Enabled = false;
@@ -182,7 +182,7 @@ namespace TylerEvents
             MaxParticipants.Enabled = true;
 
             SaveEvent.Visible = true;
-            editButton.Visible = false;
+            EditEvent.Visible = false;
         }
 
         protected void AddComment(object sender, EventArgs e)
