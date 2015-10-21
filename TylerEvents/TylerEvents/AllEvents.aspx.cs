@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace TylerEvents
 {
@@ -14,18 +15,64 @@ namespace TylerEvents
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataTable allEventsTable = DataAccess.Instance().retrieveAllEvents();
+            // Receive the parameters
+            UrlParameterPasser urlWrapper = new UrlParameterPasser();
+            String filterDate = urlWrapper["filterDate"];
 
-            allEventsDataSource = new DataView(allEventsTable);
+            this.filterOnDate(filterDate);
+        }
 
-            AllEventsGrid.DataSource = allEventsDataSource;
+        protected void DateSearchButton_Clicked(object sender, EventArgs e)
+        {
+            this.filterOnDate(SearchDate.Text);
+        }
+        protected void TitleSearchButton_Clicked(object sender, EventArgs e)
+        {
+            this.filterOnTitle(SearchTitle.Text);
+        }
+
+        private void filterOnDate(string dateString)
+        {
+            DateTime startDate;
+            
+            if ((dateString != "") && (DateTime.TryParse(dateString, out startDate)))
+            {
+                AllEventsGrid.DataSourceID = null;
+                AllEventsGrid.DataSource = EventsDataSourceFilterByDate;
+                EventsDataSourceFilterByDate.SelectParameters["FilterDate"].DefaultValue = dateString;
+            }
+            else
+            {
+                AllEventsGrid.DataSourceID = null;
+                AllEventsGrid.DataSource = EventsDataSource;
+            }
 
             AllEventsGrid.DataBind();
         }
-        protected void CurrentMonthEventsDataSource_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+
+
+        private void filterOnTitle(string titleString)
         {
-            e.Command.Parameters[0].Value = this.User.Identity.Name;
+            if (titleString != "")
+            {
+                AllEventsGrid.DataSourceID = null;
+                AllEventsGrid.DataSource = EventsDataSourceFilterByTitle;
+                EventsDataSourceFilterByTitle.SelectParameters["FilterTitle"].DefaultValue = titleString;
+            }
+            else
+            {
+                AllEventsGrid.DataSourceID = null;
+                AllEventsGrid.DataSource = EventsDataSource;
+            }
+
+            AllEventsGrid.DataBind();
         }
 
+        protected void AllEventsGrid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            AllEventsGrid.PageIndex = e.NewPageIndex;
+            AllEventsGrid.DataBind();
+        }
+        
     }
 }

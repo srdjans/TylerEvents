@@ -28,8 +28,8 @@
                 <div class="table-responsive">
                     <asp:GridView ID="OwnedEventsGrid" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="OwnedEvents" DataKeyNames="RecId,Id">
                         <Columns>
-                            <asp:BoundField DataField="EventName" HeaderText="EventName" SortExpression="EventName" />
-                            <asp:BoundField DataField="StartDateTime" HeaderText="StartDateTime" SortExpression="StartDateTime" />
+                            <asp:HyperLinkField DataNavigateUrlFields="RecId" DataNavigateUrlFormatString="EventDetail.aspx?eventId={0}" DataTextField="EventName" HeaderText="Event Name" SortExpression="EventName"/>
+                            <asp:BoundField DataField="StartDateTime" HeaderText="Start Date and Time" SortExpression="StartDateTime" />
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -37,8 +37,8 @@
                 <div class="table-responsive">
                     <asp:GridView ID="RegisteredEvents" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="RegisteredEventsDataSource" DataKeyNames="RecId,Id">
                         <Columns>
-                            <asp:BoundField DataField="EventName" HeaderText="EventName" SortExpression="EventName" />
-                            <asp:BoundField DataField="StartDateTime" HeaderText="StartDateTime" SortExpression="StartDateTime" />
+                            <asp:HyperLinkField DataNavigateUrlFields="RecId" DataNavigateUrlFormatString="EventDetail.aspx?eventId={0}" DataTextField="EventName" HeaderText="Event Name" SortExpression="EventName"/>
+                            <asp:BoundField DataField="StartDateTime" HeaderText="Start Date and Time" SortExpression="StartDateTime" />
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -46,14 +46,14 @@
                 <div class="table-responsive">
                     <asp:GridView ID="UpcomingEvents" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="UpcommingEventsDataSource" DataKeyNames="RecId">
                         <Columns>
-                            <asp:BoundField DataField="EventName" HeaderText="EventName" SortExpression="EventName" />
-                            <asp:BoundField DataField="StartDateTime" HeaderText="StartDateTime" SortExpression="StartDateTime" />
+                            <asp:HyperLinkField DataNavigateUrlFields="RecId" DataNavigateUrlFormatString="EventDetail.aspx?eventId={0}" DataTextField="EventName" HeaderText="Event Name" SortExpression="EventName"/>
+                            <asp:BoundField DataField="StartDateTime" HeaderText="Start Date and Time" SortExpression="StartDateTime" />
                         </Columns>
                     </asp:GridView>
                 </div>
         </div>
         <div class="col-md-3">
-            <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+            <asp:Calendar ID="HomePageCalendar" runat="server" OnSelectionChanged="HomePageCalendar_SelectionChanged"></asp:Calendar>
             <h3>Recently created</h3>
             <div class="table-responive">
                 <table class="table">

@@ -13,13 +13,49 @@ namespace TylerEvents {
     public partial class AllEvents {
         
         /// <summary>
-        /// Sidebar control.
+        /// EventsDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Sidebar;
+        protected global::System.Web.UI.WebControls.SqlDataSource EventsDataSource;
+        
+        /// <summary>
+        /// EventsDataSourceFilterByDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource EventsDataSourceFilterByDate;
+        
+        /// <summary>
+        /// EventsDataSourceFilterByTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource EventsDataSourceFilterByTitle;
+        
+        /// <summary>
+        /// SearchDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchDate;
+        
+        /// <summary>
+        /// SearchTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchTitle;
         
         /// <summary>
         /// AllEventsGrid control.
