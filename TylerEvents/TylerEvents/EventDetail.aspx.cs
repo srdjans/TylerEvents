@@ -71,6 +71,9 @@ namespace TylerEvents
             {
                 this.PopulateComments();
             }
+
+            ParticipantsDataSource.SelectParameters["EventId"].DefaultValue = eventId;
+            AttendeesList.DataBind();
         }
 
         protected void SetTheProgressBar(int min, int max, int registered)

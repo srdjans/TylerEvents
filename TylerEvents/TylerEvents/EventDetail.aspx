@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="Event Detail" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EventDetail.aspx.cs" Inherits="TylerEvents.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:SqlDataSource ID="ParticipantsDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT AspNetUsers.UserName FROM AspNetUsers INNER JOIN Participants ON AspNetUsers.Id = Participants.UserId WHERE (Participants.EventId = @EventId)">
+        <SelectParameters>
+            <asp:Parameter Name="EventId" />
+        </SelectParameters>
+    </asp:SqlDataSource>
     <div class="col-md-8">
         <h3><%: Title   %><button runat="server" ID="editButton" class = "btn btn-default" type = "button" onserverclick="EditButton_ServerClick"><i class="glyphicon glyphicon-edit">Edit</i></button>
         </h3>
@@ -60,12 +65,23 @@
         <br />
         <br />
         <asp:Panel ID="ChatPanel" runat="server">
-            <div class="row">
-                <label>Comment Body</label>
-                <asp:TextBox ID="txtCommentBody" runat="server" CssClass="form-control" TextMode="multiline" Rows="6"/>
-                <asp:Button ID="btnAdd" runat="server" OnClick="AddComment" Text="Add Comment" CssClass="btn btn-default" />
-                <asp:RequiredFieldValidator ID="rfvCommentBody" runat="server" Display="Dynamic"
-                    ControlToValidate="txtCommentBody" ErrorMessage="Please enter some text in the comment field!!" ForeColor="Red"></asp:RequiredFieldValidator>
+            <div class="well">
+ 
+                <h4>Leave a comment</h4>
+ 
+                <div role="form" class="clearfix">
+ 
+                    <div class="col-md-12 form-group">
+                        <label class="sr-only" for="comment">Comment</label>
+                        <asp:TextBox ID="txtCommentBody" runat="server" CssClass="form-control" TextMode="multiline" Rows="6" placeholder="Comment"/>
+                    </div>
+ 
+                    <div class="col-md-12 form-group text-right">
+                        <asp:Button ID="btnAdd" runat="server" OnClick="AddComment" Text="Submit" CssClass="btn btn-primary" />
+                    </div>
+                    <asp:RequiredFieldValidator ID="rfvCommentBody" runat="server" Display="Dynamic"
+                        ControlToValidate="txtCommentBody" ErrorMessage="Please enter some text in the comment field!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                </div>                   
             </div>
                 <asp:Repeater ID="rptComments" runat="server">
                 <ItemTemplate>
@@ -89,7 +105,11 @@
             </div>
         </div>
         <asp:Panel ID="AttendeesPanel" runat="server" BackColor="WhiteSmoke" Height="900px">
-            <asp:GridView ID="AttendeesList" runat="server"></asp:GridView>
+            <asp:GridView ID="AttendeesList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="ParticipantsDataSource" DataKeyNames="UserName">
+                <Columns>
+                    <asp:BoundField DataField="UserName" HeaderText="Participant User Names" SortExpression="UserName" />
+                </Columns>
+            </asp:GridView>
         </asp:Panel>
     </div>
     
