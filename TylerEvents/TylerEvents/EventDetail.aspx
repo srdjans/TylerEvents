@@ -79,8 +79,6 @@
                     <div class="col-md-12 form-group text-right">
                         <asp:Button ID="btnAdd" runat="server" OnClick="AddComment" Text="Submit" CssClass="btn btn-primary" />
                     </div>
-                    <asp:RequiredFieldValidator ID="rfvCommentBody" runat="server" Display="Dynamic"
-                        ControlToValidate="txtCommentBody" ErrorMessage="Please enter some text in the comment field!!" ForeColor="Red"></asp:RequiredFieldValidator>
                 </div>                   
             </div>
                 <asp:Repeater ID="rptComments" runat="server">
