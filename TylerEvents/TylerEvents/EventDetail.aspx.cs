@@ -39,6 +39,14 @@ namespace TylerEvents
             int maxParticipants = eventDetailsTable.MaxParticipants;
             int registeredParticipants = 0;// will be set to count of particapants
             //SetTheProgressBar(minParticipants, maxParticipants, registeredParticipants);
+
+            string userName = this.User.Identity.Name;
+            DataAccess checkIfUserIsParticipant = DataAccess.Instance();
+
+            //if (checkIfUserIsParticipant.checkUserIsAlreadyParticcipant(eventRecId, userName))
+            //{
+                //JoinEvent.Enabled = false;
+            //}
         }
 
         protected void SetTheProgressBar(int min, int max, int registered)
@@ -96,6 +104,11 @@ namespace TylerEvents
                 minNumParticipants,
                 userName,
                 eventRecId);
+        }
+
+        protected void EditButton_ServerClick(object sender, EventArgs e)
+        {
+
         }
     }
 }
