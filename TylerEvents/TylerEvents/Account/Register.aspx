@@ -5,7 +5,7 @@
     <div class="row"> 
         <div class="col-md-7"> 
             <p style="font-size:xx-large">Register</p>
-            <p style="color:darkgray;  font-style:italic; font-size:small">Use a local account to log in.</p>        
+            <p style="color:darkgray; font-size:medium">Create a new account.</p>       
         </div> 
      </div>
     </div>
@@ -17,7 +17,6 @@
         <div class="row">
      <div class="col-md-6">
     <div class="form-horizontal">
-        <p style="font-size:large">Create a new account</p>
 
        
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
