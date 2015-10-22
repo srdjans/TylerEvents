@@ -2051,8 +2051,8 @@ fieldset[disabled] .btn {
 }
 
 .btn-default {
-  color: #333333;
-  background-color: #ffffff;
+  color: whitesmoke;
+  background-color: #0c116d;
   border-color: #cccccc;
 }
 
@@ -2061,8 +2061,8 @@ fieldset[disabled] .btn {
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
-  color: #333333;
-  background-color: #ebebeb;
+  color: whitesmoke;
+  background-color: #202770;
   border-color: #adadad;
 }
 
@@ -4954,6 +4954,7 @@ a.list-group-item.active > .badge,
 
 .jumbotron p {
   line-height: 1.4;
+  text-align:left;
 }
 
 .container .jumbotron {
