@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Login.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="TylerEvents.Account.Register" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <div class="container">
     <h2><%: Title %>.</h2>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
@@ -9,6 +10,7 @@
     <div class="form-horizontal">
         <h4>Create a new account</h4>
         <hr />
+        <div class="col-md-7">
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Email</asp:Label>
@@ -41,5 +43,13 @@
                 <asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-default" />
             </div>
         </div>
+    </div>
+        <div class="col-md-1">
+                    <div class="w3-image">
+                    <img src="../Tyler events logo_Small.png" width="457" height="153">
+                    </div>
+                </div>
+    </div>
+        
     </div>
 </asp:Content>

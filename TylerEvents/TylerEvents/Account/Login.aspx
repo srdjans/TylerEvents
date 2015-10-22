@@ -5,16 +5,17 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div class="container">
     <div class="row"> 
-        <div class="col-md-12"> 
+        <div class="col-md-7"> 
             <p style="font-size:xx-large">Log in</p>
             <p style="color:darkgray; font-size:medium">Use a local account to log in.</p>
-            <hr>
+            
         </div> 
      </div>
     </div>
+    <hr>
     <div class="container">
         <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <section id="loginForm">
                 <div class="form-horizontal">
                     
@@ -63,9 +64,9 @@
    
             </section>
         </div>
-                     <div class="col-md-1">
+                <div class="col-md-1">
                     <div class="w3-image">
-                    <img src="../HomeIcon.png" width="240" height="240">
+                    <img src="../Tyler events logo_Small.png" width="457" height="153">
                     </div>
                 </div>
     </div>

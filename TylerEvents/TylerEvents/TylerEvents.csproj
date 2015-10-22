@@ -160,6 +160,7 @@
     <Content Include="Content\bootstrap-datetimepicker-standalone.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\signin.css" />
     <Content Include="EventDetail.aspx" />
     <Content Include="MyEvents.aspx" />
     <Content Include="NewEvent.aspx" />

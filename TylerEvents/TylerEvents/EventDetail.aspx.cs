@@ -130,10 +130,14 @@ namespace TylerEvents
             if (databaseAccess.getNumberOfParticipantsInEvent(eventRecId) + 1 <= eventDetailsTable.MaxParticipants || eventDetailsTable.MaxParticipants == 0)
             {
                 databaseAccess.joinEvent(eventRecId, userName);
-                Alert.Show("Congratulations! You have successfully registered to " + EventTitle.Text);
+                //Alert.Show("Congratulations! You have successfully registered to " + EventTitle.Text);
 
                 LeaveEvent.Visible = true;
                 JoinEvent.Visible = false;
+
+                UrlParameterPasser urlWrapper = new UrlParameterPasser("EventDetail.aspx");
+                urlWrapper["eventId"] = eventRecId.ToString();
+                urlWrapper.PassParameters();
             }
             else
             {
@@ -143,7 +147,6 @@ namespace TylerEvents
                 JoinEvent.Visible = true;
             }
 
-            
         }
 
         protected void LeaveEvent_Click(object sender, EventArgs e)
@@ -156,7 +159,11 @@ namespace TylerEvents
             LeaveEvent.Visible = false;
             JoinEvent.Visible = true;
 
-            Alert.Show("You have left the event " + EventTitle.Text);
+            //Alert.Show("You have left the event " + EventTitle.Text);
+
+            UrlParameterPasser urlWrapper = new UrlParameterPasser("EventDetail.aspx");
+            urlWrapper["eventId"] = eventRecId.ToString();
+            urlWrapper.PassParameters();
         }
 
         protected void SaveEvent_Click(object sender, EventArgs e)
