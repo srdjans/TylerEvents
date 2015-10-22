@@ -41,9 +41,9 @@
             </Scripts>
         </asp:ScriptManager>
         <div class="container">
-            <div class ="jumbotron">
+                 <div class ="jumbotron">
                 <h1>Tyler Events</h1>
-                <p class="lead">The easy way to organize an event.</p>
+                <div class="h1"><small>The easy way to organize an event.</small></div>
             </div>
         </div>
             <div class="container">
