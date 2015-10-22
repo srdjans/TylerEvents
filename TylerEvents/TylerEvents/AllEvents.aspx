@@ -12,8 +12,8 @@
             <asp:Parameter Name="FilterTitle" />
         </SelectParameters>
     </asp:SqlDataSource>
-   <div class="container">
-        <div class="row">
+    <div class="row">
+        <div class="container">
             <div class="col-md-2 sidebar" style="background-color:#f5f5f5; border-radius:10px; padding:15px">
                 <label>Filter by Start Date</label>
                 <div class="input-group">

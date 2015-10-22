@@ -130,15 +130,6 @@ namespace TylerEvents {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator MinParticipantsValidator;
         
         /// <summary>
-        /// cvMinParticipants control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cvMinParticipants;
-        
-        /// <summary>
         /// MaxParticipants control.
         /// </summary>
         /// <remarks>
@@ -155,15 +146,6 @@ namespace TylerEvents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator MaxParticipantsValidator;
-        
-        /// <summary>
-        /// cvtxtMaxParticipants control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cvtxtMaxParticipants;
         
         /// <summary>
         /// JoinEvent control.
@@ -245,6 +227,78 @@ namespace TylerEvents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAdd;
+        
+        /// <summary>
+        /// progressMin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel progressMin;
+        
+        /// <summary>
+        /// ProgressBarReachMin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ProgressBarReachMin;
+        
+        /// <summary>
+        /// progressMinFull control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel progressMinFull;
+        
+        /// <summary>
+        /// ProgressBarReachMinFull control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ProgressBarReachMinFull;
+        
+        /// <summary>
+        /// progressMax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel progressMax;
+        
+        /// <summary>
+        /// ProgressBarReachMax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ProgressBarReachMax;
+        
+        /// <summary>
+        /// progressMaxFull control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel progressMaxFull;
+        
+        /// <summary>
+        /// ProgressBarReachMaxFull control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ProgressBarReachMaxFull;
         
         /// <summary>
         /// AttendeesPanel control.

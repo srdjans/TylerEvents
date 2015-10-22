@@ -55,25 +55,12 @@
                 <label>Minimum Participants</label>
                 <asp:TextBox ID="MinParticipants" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 <asp:RegularExpressionValidator ID="MinParticipantsValidator" runat="server" ErrorMessage="Please enter a valid number!!" ForeColor="Red" ControlToValidate="MaxParticipants" ValidationExpression="[-+]?\d+"></asp:RegularExpressionValidator>
-                <asp:CompareValidator id="cvMinParticipants" runat="server" ForeColor="Red"
-                     ControlToCompare="MaxParticipants" cultureinvariantvalues="true" 
-                     display="Dynamic" enableclientscript="true"  
-                     ControlToValidate="MinParticipants" 
-                     ErrorMessage="Must be lower than maximum!!"
-                     type="Integer" setfocusonerror="true" Operator="LessThanEqual"
-                     text="Must be lower than maximum!!"></asp:CompareValidator>
+                
             </div>
             <div class='col-sm-4'>
                 <label>Maximum Participants</label>
                 <asp:TextBox ID="MaxParticipants" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 <asp:RegularExpressionValidator ID="MaxParticipantsValidator" runat="server" ErrorMessage="Please enter a valid number!!" ForeColor="Red" ControlToValidate="MinParticipants" ValidationExpression="[-+]?\d+"></asp:RegularExpressionValidator>
-                <asp:CompareValidator id="cvtxtMaxParticipants" runat="server" ForeColor="Red"
-                     ControlToCompare="MinParticipants" cultureinvariantvalues="true" 
-                     display="Dynamic" enableclientscript="true"  
-                     ControlToValidate="MaxParticipants" 
-                     ErrorMessage="Must be greater than minimum!!"
-                     type="Integer" setfocusonerror="true" Operator="GreaterThanEqual" 
-                     text="Must be greater than minimum!!"></asp:CompareValidator>
             </div>
         </div>
         <asp:Button ID="JoinEvent" runat="server" Text="Join Event" CssClass="btn btn-lg btn-primary" OnClick="JoinEvent_Click"/>
@@ -126,16 +113,28 @@
     </div>
     </div>
     <div class="col-md-4" style="background-color:whitesmoke; border-radius:10px; padding:15px">
-        <div class="progress">
-            <div Id="ProgressBarReachMin" class="progress-bar progress-bar-warning" role="progressbar" style= "width:0%">
-                Not enough<!--need a placeholder for the progress bar-->
-
+        <label>Participants required</label>
+        <asp:panel runat="server" Id="progressMin" Visible="false">
+            <div class="progress">
+                <div runat="server" Id="ProgressBarReachMin" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <div Id="ProgressBarReachMax" class="progress-bar progress-bar-info" role="progressbar" style= "width:0%">
-               Enough <!--need a placeholder for the progress bar-->
-
+        </asp:panel>
+        <asp:panel runat="server" Id="progressMinFull" Visible="false">
+            <div class="progress">
+                <div runat="server" Id="ProgressBarReachMinFull" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-        </div>
+        </asp:panel>
+        <label>Event participant capacity</label>
+        <asp:panel runat="server" Id="progressMax" Visible="false">
+            <div class="progress">
+                <div runat="server" Id="ProgressBarReachMax" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </asp:panel>
+        <asp:panel runat="server" Id="progressMaxFull" Visible="false">
+            <div class="progress">
+                <div runat="server" Id="ProgressBarReachMaxFull" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </asp:panel>
         <asp:Panel ID="AttendeesPanel" runat="server">
             <asp:GridView ID="AttendeesList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="ParticipantsDataSource" DataKeyNames="UserName">
                 <Columns>

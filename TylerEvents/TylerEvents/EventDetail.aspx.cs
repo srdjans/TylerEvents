@@ -25,73 +25,98 @@ namespace TylerEvents
             // Receive the parameters
             UrlParameterPasser urlWrapper = new UrlParameterPasser();
             eventId = urlWrapper["eventId"];
-            eventRecId = Convert.ToInt64(eventId);
 
-            EventData eventDetailsTable = DataAccess.Instance().retrieveEventDetailsFromId(eventRecId);
-
-            // Set the form data
-            if (!IsPostBack)
-            {
-                SaveEvent.Visible = false;
-            //Need new stored procedure to get the data and count of all registered participants
-
-            EventTitle.Text = eventDetailsTable.EventName;
-            EventOwner.Text = databaseAccess.getUserNameFromUserName(eventDetailsTable.OwnerId);
-            EventStartDateTime.Text = eventDetailsTable.StartDateTime;
-            EventEndDateTime.Text = eventDetailsTable.StartDateTime;
-            EventLocation.Text = eventDetailsTable.Location;
-            EventDescription.Text = eventDetailsTable.Description;
-            MinParticipants.Text = eventDetailsTable.MinParticipants.ToString();
-            MaxParticipants.Text = eventDetailsTable.MaxParticipants.ToString();
-
-            //Progress Bar data
-            int minParticipants = eventDetailsTable.MinParticipants;
-            int maxParticipants = eventDetailsTable.MaxParticipants;
-            int registeredParticipants = databaseAccess.getNumberOfParticipantsInEvent(eventRecId);
-            //SetTheProgressBar(minParticipants, maxParticipants, registeredParticipants);
+            if (eventId == null){
+                Response.Redirect("/MyEvents");
             }
+            else{
+                eventRecId = Convert.ToInt64(eventId);
 
-            if (!databaseAccess.checkUserNameBelongsToUserId(eventDetailsTable.OwnerId, this.User.Identity.Name))
-            {
-                DeleteEvent.Visible = false;
-                EditEvent.Visible = false;
+                EventData eventDetailsTable = DataAccess.Instance().retrieveEventDetailsFromId(eventRecId);
 
-                if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
+                // Set the form data
+                if (!IsPostBack)
                 {
-                    JoinEvent.Visible = false;
-                    LeaveEvent.Visible = true;
+                    SaveEvent.Visible = false;
+                    //Need new stored procedure to get the data and count of all registered participants
+
+                    EventTitle.Text = eventDetailsTable.EventName;
+                    EventOwner.Text = databaseAccess.getUserNameFromUserName(eventDetailsTable.OwnerId);
+                    EventStartDateTime.Text = eventDetailsTable.StartDateTime;
+                    EventEndDateTime.Text = eventDetailsTable.StartDateTime;
+                    EventLocation.Text = eventDetailsTable.Location;
+                    EventDescription.Text = eventDetailsTable.Description;
+                    MinParticipants.Text = eventDetailsTable.MinParticipants.ToString();
+                    MaxParticipants.Text = eventDetailsTable.MaxParticipants.ToString();
+
+                    //Progress Bar data
+                    int minParticipants = eventDetailsTable.MinParticipants;
+                    int maxParticipants = eventDetailsTable.MaxParticipants;
+                    int registeredParticipants = databaseAccess.getNumberOfParticipantsInEvent(eventRecId);
+                    SetTheProgressBar(minParticipants, maxParticipants, registeredParticipants);
+
                 }
-            }
-            else
-            {
-                DeleteEvent.Visible = true;
-                EditEvent.Visible = true;
-                JoinEvent.Visible = false;
-            }
 
-            if (!this.IsPostBack)
-            {
-                this.PopulateComments();
-            }
+                if (!databaseAccess.checkUserNameBelongsToUserId(eventDetailsTable.OwnerId, this.User.Identity.Name))
+                {
+                    DeleteEvent.Visible = false;
+                    EditEvent.Visible = false;
 
-            ParticipantsDataSource.SelectParameters["EventId"].DefaultValue = eventId;
-            AttendeesList.DataBind();
+                    if (databaseAccess.checkUserIsAlreadyParticipant(eventRecId, userName))
+                    {
+                        JoinEvent.Visible = false;
+                        LeaveEvent.Visible = true;
+                    }
+                }
+                else
+                {
+                    DeleteEvent.Visible = true;
+                    EditEvent.Visible = true;
+                    JoinEvent.Visible = false;
+                }
+
+                if (!this.IsPostBack)
+                {
+                    this.PopulateComments();
+                }
+
+                ParticipantsDataSource.SelectParameters["EventId"].DefaultValue = eventId;
+                AttendeesList.DataBind();
+            }
         }
 
         protected void SetTheProgressBar(int min, int max, int registered)
         {
-            HtmlGenericControl htmlProgressBar = new HtmlGenericControl();
             if (registered < min)
             {
-                decimal widthPercent = Math.Floor((decimal)(100 / max) * min);
-                htmlProgressBar = (HtmlGenericControl)htmlProgressBar.FindControl("ProgressBarReachMin");
-                htmlProgressBar.Attributes.Add("style", string.Format("width:{0}%;", widthPercent));
+                decimal widthPercent = Math.Floor((decimal)(100 / min) * registered);
+
+                ProgressBarReachMin.Attributes.Add("style", string.Format("width:{0}%;", widthPercent));
+                progressMin.Visible = true;
+                progressMinFull.Visible = false;
             }
             else
             {
+                ProgressBarReachMinFull.Attributes.Add("style", string.Format("width:{0}%;", 100));
+                progressMinFull.Visible = true;
+                progressMin.Visible = false;
+            }
+
+            if (registered < max)
+            {
                 decimal widthPercent = Math.Floor((decimal)(100 / max) * registered);
-                htmlProgressBar = (HtmlGenericControl)htmlProgressBar.FindControl("ProgressBarReachMax");
-                htmlProgressBar.Attributes.Add("style", string.Format("width:{0}%;", widthPercent));
+
+                ProgressBarReachMax.Attributes.Add("style", string.Format("width:{0}%;", widthPercent));
+
+                progressMax.Visible = true;
+                progressMaxFull.Visible = false;
+            }
+            else
+            {
+                ProgressBarReachMaxFull.Attributes.Add("style", string.Format("width:{0}%;", 100));
+
+                progressMaxFull.Visible = true;
+                progressMax.Visible = false;
             }
            
         }
