@@ -33,7 +33,22 @@ namespace TylerEvents
 
         protected void HomePageCalendar_SelectionChanged(object sender, EventArgs e)
         {
-            this.filterCalendarGridOnDate(HomePageCalendar.SelectedDate.ToShortDateString());
+            DateTime dateTime = HomePageCalendar.SelectedDate;
+            int month = dateTime.Month;
+            int day = dateTime.Day;
+            int year = dateTime.Year;
+            string dayString = day.ToString();
+            string monthString = month.ToString();
+            string dateString;
+
+            if (month < 10)
+                monthString = "0" + monthString;
+            if (day < 10)
+                dayString = "0" + dayString;
+
+            dateString = monthString + "/" + dayString + "/" + year.ToString();
+
+            this.filterCalendarGridOnDate(dateString);
         }
 
         private void filterCalendarGridOnDate(string dateString)
