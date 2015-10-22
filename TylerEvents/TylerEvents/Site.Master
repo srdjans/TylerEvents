@@ -13,7 +13,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
-    <link href="~/Home.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="Content/bootstrap-datepicker.css" rel="stylesheet" />
     <link href="Content/bootstrap-datetimepicker.css" rel="stylesheet" />
 
@@ -63,7 +63,7 @@
                         <li><a runat="server" href="~\NewEvent"><span class="glyphicon glyphicon-plus"></span>Create Event</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a runat="server" href="~\Settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                        <%--<li><a runat="server" href="~\Settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>--%>
                         <li><asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Account/Login" OnLoggingOut="Unnamed_LoggingOut" /></li>
                     </ul>
                 </div>

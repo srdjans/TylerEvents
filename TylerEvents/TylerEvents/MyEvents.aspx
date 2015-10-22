@@ -24,8 +24,9 @@
     </div>-->
     <div class="row">
         <div class="container">
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <h2>My created events</h2>
+                <p style="color:darkgray; font-style:italic; font-size:small">Events that I created.</p>
                     <div class="table-responsive">
                         <asp:GridView ID="OwnedEventsGrid" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="OwnedEvents" DataKeyNames="RecId,Id">
                             <Columns>
@@ -35,6 +36,7 @@
                         </asp:GridView>
                     </div>
                 <h2>My registered events</h2>
+                <p style="color:darkgray; font-style:italic; font-size:small">Events that I am signed up for.</p>
                     <div class="table-responsive">
                         <asp:GridView ID="RegisteredEvents" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="RegisteredEventsDataSource" DataKeyNames="RecId,Id">
                             <Columns>
@@ -44,6 +46,7 @@
                         </asp:GridView>
                     </div>
                 <h2>Upcoming Events</h2>
+                <p style="color:darkgray; font-style:italic; font-size:small">Events in the next 60 days.</p>
                     <div class="table-responsive">
                         <asp:GridView ID="UpcomingEvents" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="UpcommingEventsDataSource" DataKeyNames="RecId">
                             <Columns>
@@ -54,8 +57,11 @@
                     </div>
             </div>
             <div class="col-md-3">
+                <Label>Find events by date</Label>
                 <asp:Calendar ID="HomePageCalendar" runat="server" OnSelectionChanged="HomePageCalendar_SelectionChanged"></asp:Calendar>
                 <asp:Panel ID="CalendarPanel" runat="server" visible="false" >
+                    <br />
+                    <Label>Events for date</Label>
                     <h3><asp:Label ID="CalendarLabel" runat="server"/></h3>
                     <asp:Label ID="NoEventsTodayLabel" Text="No events for the selected day." runat="server" />
                     <asp:GridView ID="CalendarEvents" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="CalendarEventsDataSource" DataKeyNames="RecId">

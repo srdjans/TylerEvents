@@ -6,11 +6,12 @@
             <asp:Parameter Name="EventId" />
         </SelectParameters>
     </asp:SqlDataSource>
+    <div class="container">
     <div class="col-md-8">
         <h3><%: Title   %>
         </h3>
         <label>Event Title</label>
-&nbsp;<asp:TextBox ID="EventTitle" runat="server" placeholder="Event Title" CssClass="form-control" Enabled="false"></asp:TextBox>
+        <asp:TextBox ID="EventTitle" runat="server" placeholder="Event Title" CssClass="form-control" Enabled="false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="EventTitleRequired" runat="server" ErrorMessage="Event title is required!!" ForeColor="Red" ControlToValidate="EventTitle"></asp:RequiredFieldValidator>
         <br />
         <label>Location</label>
@@ -66,10 +67,30 @@
         <asp:Button ID="DeleteEvent" runat="server" Text="Delete Event" CssClass="btn btn-lg btn-primary" OnClick="DeleteEvent_Click"/>
         <br />
         <br />
+        <div class="well" style="background-color:white">
+            <h4>Discussion Panel</h4>
+            <div class="coontainer">
         <asp:Panel ID="ChatPanel" runat="server">
+            <div class="container">
+            <asp:Repeater ID="rptComments" runat="server">
+                <ItemTemplate>
+                    <div class="row">
+                    <div class="well">
+                        <div class="col-xs-7">
+                            <asp:Label ID="UserName" runat="server" Text='<%# Eval("UserName")     %>' Font-Bold="true"></asp:Label>
+                        </div>
+                        <div class="col-xs-7">
+                            &nbsp&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblCommentBody" runat="server" Text='<%# Eval("CommentBody") %>' Font-Italic="true"></asp:Label>
+                        </div>
+                        <hr />
+                    </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+            </div>
             <div class="well">
  
-                <h4>Leave a comment</h4>
+                <h4>Join the discussion...</h4>
  
                 <div role="form" class="clearfix">
  
@@ -83,15 +104,9 @@
                     </div>
                 </div>                   
             </div>
-                <asp:Repeater ID="rptComments" runat="server">
-                <ItemTemplate>
-                    <div class="col-xs-8">
-                        <asp:Label ID="UserName" runat="server" Text='<%# Eval("UserName") %>'></asp:Label>
-                        <asp:Label ID="lblCommentBody" runat="server" Text='<%# Eval("CommentBody") %>'></asp:Label>
-                </div>
-                </ItemTemplate>
-            </asp:Repeater>
         </asp:Panel>
+    </div>
+    </div>
     </div>
     <div class="col-md-4" style="background-color:whitesmoke; border-radius:10px; padding:15px">
         <div class="progress">
@@ -111,6 +126,7 @@
                 </Columns>
             </asp:GridView>
         </asp:Panel>
+    </div>
     </div>
     
 </asp:Content>
