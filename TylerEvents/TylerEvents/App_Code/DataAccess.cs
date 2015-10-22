@@ -145,6 +145,14 @@ namespace TylerEvents
             return this.ExecuteParamerizedSelectCommand("AspNetUsers_GetIdFromUserName", CommandType.StoredProcedure, userIdParams).Rows[0]["Id"].ToString();
         }
 
+        public string getUserNameFromUserName(string userId)
+        {
+            SqlParameter[] userIdParams = new SqlParameter[1];
+            userIdParams[0] = new SqlParameter("@UserId", userId);
+
+            return this.ExecuteParamerizedSelectCommand("AspNetUsers_GetUserNameFromId", CommandType.StoredProcedure, userIdParams).Rows[0]["UserName"].ToString();
+        }
+
         public string getEventIdFromEventNameAndDateTime(string eventName, string eventStartDateTime)
         {
             SqlParameter[] userIdParams = new SqlParameter[2];
@@ -325,7 +333,7 @@ namespace TylerEvents
 
         public DataTable getAllCommentsForEvent(Int64 eventId)
         {
-            string sqlStatment = "SELECT UserName, CommentBody FROM Comments WHERE EventId=@EventId";
+            string sqlStatment = "SELECT UserName, CommentBody, commentDateTime FROM Comments WHERE EventId=@EventId";
             SqlParameter[] eventIdParams = new SqlParameter[1];
 
             eventIdParams[0] = new SqlParameter("@EventId", eventId);

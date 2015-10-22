@@ -61,13 +61,12 @@
                 <asp:Calendar ID="HomePageCalendar" runat="server" OnSelectionChanged="HomePageCalendar_SelectionChanged"></asp:Calendar>
                 <asp:Panel ID="CalendarPanel" runat="server" visible="false" >
                     <br />
-                    <Label>Events for date</Label>
-                    <h3><asp:Label ID="CalendarLabel" runat="server"/></h3>
+                    <label><asp:Label ID="CalendarLabel" runat="server"/></label><br />
                     <asp:Label ID="NoEventsTodayLabel" Text="No events for the selected day." runat="server" />
                     <asp:GridView ID="CalendarEvents" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-condensed" DataSourceID="CalendarEventsDataSource" DataKeyNames="RecId">
                         <Columns>
                             <asp:HyperLinkField DataNavigateUrlFields="RecId" DataNavigateUrlFormatString="EventDetail.aspx?eventId={0}" DataTextField="EventName" HeaderText="Event Name" SortExpression="EventName"/>
-                            <asp:BoundField DataField="StartDateTime" HeaderText="Start Date and Time" SortExpression="StartDateTime" />
+                            <asp:BoundField DataField="StartDateTime" HeaderText="Start Date and Time" SortExpression="StartDateTi+-me" />
                         </Columns>
                     </asp:GridView>
                 </asp:Panel>

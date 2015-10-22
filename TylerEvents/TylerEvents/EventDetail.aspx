@@ -14,6 +14,9 @@
         <asp:TextBox ID="EventTitle" runat="server" placeholder="Event Title" CssClass="form-control" Enabled="false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="EventTitleRequired" runat="server" ErrorMessage="Event title is required!!" ForeColor="Red" ControlToValidate="EventTitle"></asp:RequiredFieldValidator>
         <br />
+        <label>Event Owner</label>
+        <asp:TextBox ID="EventOwner" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+        <br />
         <label>Location</label>
         <asp:TextBox ID="EventLocation" runat="server" placeholder="Location" CssClass="form-control" Enabled="false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="LocationRequired" runat="server" ErrorMessage="Location is required!!" ForeColor="Red" ControlToValidate="EventLocation"></asp:RequiredFieldValidator>
@@ -77,7 +80,8 @@
                     <div class="row">
                     <div class="well">
                         <div class="col-xs-7">
-                            <asp:Label ID="UserName" runat="server" Text='<%# Eval("UserName")     %>' Font-Bold="true"></asp:Label>
+                            <asp:Label ID="UserName" runat="server" Text='<%# Eval("UserName")%>' Font-Bold="true"></asp:Label>
+                            &nbsp&nbsp<asp:Label ID="commentDateTime" runat="server" Text='<%# Eval("commentDateTime")%>' Font-Size="X-Small" Forecolor="DarkGray"></asp:Label>
                         </div>
                         <div class="col-xs-7">
                             &nbsp&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblCommentBody" runat="server" Text='<%# Eval("CommentBody") %>' Font-Italic="true"></asp:Label>

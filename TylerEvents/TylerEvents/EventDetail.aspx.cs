@@ -36,6 +36,7 @@ namespace TylerEvents
             //Need new stored procedure to get the data and count of all registered participants
 
             EventTitle.Text = eventDetailsTable.EventName;
+            EventOwner.Text = databaseAccess.getUserNameFromUserName(eventDetailsTable.OwnerId);
             EventStartDateTime.Text = eventDetailsTable.StartDateTime;
             EventEndDateTime.Text = eventDetailsTable.StartDateTime;
             EventLocation.Text = eventDetailsTable.Location;
