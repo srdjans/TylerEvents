@@ -55,12 +55,25 @@
                 <label>Minimum Participants</label>
                 <asp:TextBox ID="MinParticipants" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 <asp:RegularExpressionValidator ID="MinParticipantsValidator" runat="server" ErrorMessage="Please enter a valid number!!" ForeColor="Red" ControlToValidate="MaxParticipants" ValidationExpression="[-+]?\d+"></asp:RegularExpressionValidator>
-                
+                <asp:CompareValidator id="cvMinParticipants" runat="server" ForeColor="Red"
+                     ControlToCompare="MaxParticipants" cultureinvariantvalues="true" 
+                     display="Dynamic" enableclientscript="true"  
+                     ControlToValidate="MinParticipants" 
+                     ErrorMessage="Must be lower than maximum!!"
+                     type="Integer" setfocusonerror="true" Operator="LessThanEqual"
+                     text="Must be lower than maximum!!"></asp:CompareValidator>
             </div>
             <div class='col-sm-4'>
                 <label>Maximum Participants</label>
                 <asp:TextBox ID="MaxParticipants" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 <asp:RegularExpressionValidator ID="MaxParticipantsValidator" runat="server" ErrorMessage="Please enter a valid number!!" ForeColor="Red" ControlToValidate="MinParticipants" ValidationExpression="[-+]?\d+"></asp:RegularExpressionValidator>
+                <asp:CompareValidator id="cvtxtMaxParticipants" runat="server" ForeColor="Red"
+                     ControlToCompare="MinParticipants" cultureinvariantvalues="true" 
+                     display="Dynamic" enableclientscript="true"  
+                     ControlToValidate="MaxParticipants" 
+                     ErrorMessage="Must be greater than minimum!!"
+                     type="Integer" setfocusonerror="true" Operator="GreaterThanEqual" 
+                     text="Must be greater than minimum!!"></asp:CompareValidator>
             </div>
         </div>
         <asp:Button ID="JoinEvent" runat="server" Text="Join Event" CssClass="btn btn-lg btn-primary" OnClick="JoinEvent_Click"/>
