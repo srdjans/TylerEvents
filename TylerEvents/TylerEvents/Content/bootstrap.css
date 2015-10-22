@@ -2093,7 +2093,7 @@ fieldset[disabled] .btn-default.active {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #428bca;
+  background-color: darkblue;
   border-color: #357ebd;
 }
 
@@ -2103,7 +2103,7 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: #ffffff;
-  background-color: #3276b1;
+  background-color:#24639a;
   border-color: #285e8e;
 }
 
@@ -4936,7 +4936,6 @@ a.list-group-item.active > .badge,
   padding: 30px;
   margin-bottom: 30px;
   font-size: 21px;
-  font-weight: 250;
   line-height: 2.1428571435;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.15);
@@ -4950,6 +4949,7 @@ a.list-group-item.active > .badge,
 .jumbotron h1 {
   line-height: 1;
   color: darkblue;
+  font-weight: 500;
 }
 
 .jumbotron p {
